@@ -11,46 +11,46 @@ const Category = require("./Category");
 class Price extends Model {}
 
 const schema = {
-	id: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-		primaryKey: true,
-		autoIncrement: true,
-	},
-	bike_id: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	daily_price: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-		defaultValue: 20,
-		validate: {
-			isNumeric: true,
-		},
-	},
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  bikeId: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  dailyPrice: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 20,
+    validate: {
+      isNumeric: true,
+    },
+  },
 
-	weekly_price: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-		defaultValue: 140,
-		validate: {
-			isNumeric: true,
-		},
-	},
+  weeklyPrice: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 140,
+    validate: {
+      isNumeric: true,
+    },
+  },
 
-	discount_code: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
+  discountCode: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 };
 
 const options = {
-	sequelize: connection,
-	timestamps: true,
-	underscored: false,
-	freezeTableName: true,
-	modelName: "price",
+  sequelize: connection,
+  timestamps: true,
+  underscored: false,
+  freezeTableName: true,
+  modelName: "price",
 };
 
 Price.init(schema, options);

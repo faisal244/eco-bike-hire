@@ -12,58 +12,54 @@ class Bike extends Model {}
 
 // set up fields and rules for Bike model
 const schema = {
-	id: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-		primaryKey: true,
-		autoIncrement: true,
-	},
-	brand: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	model: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	stock: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-		defaultValue: 10,
-		validate: {
-			isNumeric: true,
-		},
-	},
-	category_id: {
-		type: DataTypes.INTEGER,
-		references: {
-			model: Category,
-			key: "id",
-		},
-	},
-	description: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	descriiption: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	coverImageUrl: {
-		type: DataTypes.STRING,
-		allowNull: true,
-		validate: {
-			isUrl: true,
-		},
-	},
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  brand: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  model: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  stock: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 10,
+    validate: {
+      isNumeric: true,
+    },
+  },
+  categoryId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Category,
+      key: "id",
+    },
+  },
+  description: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  coverImageUrl: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    validate: {
+      isUrl: true,
+    },
+  },
 };
 
 const options = {
-	sequelize: connection,
-	timestamps: true,
-	underscored: false,
-	freezeTableName: true,
-	modelName: "bike",
+  sequelize: connection,
+  timestamps: true,
+  underscored: false,
+  freezeTableName: true,
+  modelName: "bike",
 };
 
 Bike.init(schema, options);

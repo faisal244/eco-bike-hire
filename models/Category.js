@@ -3,27 +3,25 @@ const connection = require("../config/connection");
 
 class Category extends Model {}
 
-Category.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    category_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  }
-);
+Category.init({
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  categoryName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
 
- const options = {
+const options = {
   sequelize: connection,
   timestamps: true,
   underscored: false,
   freezeTableName: true,
   modelName: "user",
-  };
+};
 
 module.exports = Category;
