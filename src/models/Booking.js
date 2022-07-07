@@ -1,26 +1,16 @@
 // import important parts of sequelize library
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require("sequelize");
 
 // import our database connection from config.js
-const sequelize = require('../config/connection');
-const Bike = require('./Bike');
-const User = require('./User');
+const sequelize = require("../config/connection");
+const Bike = require("./Bike");
+const User = require("./User");
 
 //import Category for
-const Category = require('./Category');
+const Category = require("./Category");
 
 // Initialize Bike model (table) by extending off Sequelize's Model class
 class Booking extends Model {}
-
-// userId
-// pricePlan
-// bikeId
-// duration
-// dicountAmount - discuss this with team should it be the other way round?
-// total
-// startDate
-// endDate
-// subTotal
 
 const schema = {
   id: {
@@ -34,7 +24,7 @@ const schema = {
     allowNull: false,
     references: {
       model: User,
-      key: 'id',
+      key: "id",
     },
   },
   bikeId: {
@@ -42,7 +32,7 @@ const schema = {
     allowNull: false,
     references: {
       model: Bike,
-      key: 'id',
+      key: "id",
     },
   },
   pricePlan: {
@@ -65,6 +55,18 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  discountAmount: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  subTotal: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 20,
+    validate: {
+      isNumeric: true,
+    },
+  },
   total: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -72,14 +74,6 @@ const schema = {
       isNumeric: true,
     },
   },
-  // subTotal: {
-  //   type: DataTypes.INTEGER,
-  //   allowNull: false,
-  //   defaultValue: 20,
-  //   validate: {
-  //     isNumeric: true,
-  //   },
-  // },
 };
 
 const options = {
@@ -87,7 +81,7 @@ const options = {
   timestamps: true,
   underscored: false,
   freezeTableName: true,
-  modelName: 'booking',
+  modelName: "booking",
 };
 
 Booking.init(schema, options);

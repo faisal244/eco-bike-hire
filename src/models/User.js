@@ -15,13 +15,11 @@ class User extends Model {
       profileImageUrl: this.profileImageUrl,
     };
   }
-
   async checkPassword(password) {
     const isValid = await bcrypt.compare(password, this.password);
     return isValid;
   }
 }
-
 const schema = {
   id: {
     type: DataTypes.INTEGER,
@@ -30,31 +28,33 @@ const schema = {
     allowNull: false,
   },
   title: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(10),
     allowNull: false,
   },
   firstName: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   lastName: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   email: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
     validate: {
       isEmail: true,
     },
   },
   password: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   profileImageUrl: {
     type: DataTypes.STRING,
     allowNull: false,
+    defaultValue:
+      "https://files.slack.com/files-pri/T0384D4BTK2-F03PEMEFZT2/image.png",
   },
 };
 

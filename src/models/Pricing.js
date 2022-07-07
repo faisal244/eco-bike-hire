@@ -1,14 +1,16 @@
 // import important parts of sequelize library
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require("sequelize");
 
 // import our database connection from config.js
-const sequelize = require('../config/connection');
+const sequelize = require("../config/connection");
+
+const Bike = require("./Bike");
 
 //import Category for
-const Category = require('./Category');
+const Category = require("./Category");
 
 // Initialize Bike model (table) by extending off Sequelize's Model class
-class Price extends Model {}
+class Pricing extends Model {}
 
 const schema = {
   id: {
@@ -18,11 +20,15 @@ const schema = {
     autoIncrement: true,
   },
   bikeId: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
+    references: {
+      model: Bike,
+      key: "id",
+    },
   },
   dailyPrice: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER(2, 2),
     allowNull: false,
     defaultValue: 20,
     validate: {
@@ -31,7 +37,7 @@ const schema = {
   },
 
   weeklyPrice: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER(3, 2),
     allowNull: false,
     defaultValue: 140,
     validate: {
@@ -41,7 +47,7 @@ const schema = {
 
   discountCode: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 };
 
@@ -50,9 +56,9 @@ const options = {
   timestamps: true,
   underscored: false,
   freezeTableName: true,
-  modelName: 'price',
+  modelName: "pricing",
 };
 
 Pricing.init(schema, options);
 
-module.exports = Price;
+module.exports = Pricing;
