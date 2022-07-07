@@ -19,35 +19,39 @@ const schema = {
     autoIncrement: true,
   },
   brand: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
-  model: {
-    type: DataTypes.STRING,
+  modelType: {
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   stock: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    defaultValue: 10,
     validate: {
       isNumeric: true,
+      min: 1,
+      max: 50,
     },
   },
   categoryId: {
     type: DataTypes.INTEGER,
+    allowNull: false,
     references: {
-      model: Category,
+      Model: Category,
       key: "id",
     },
   },
   description: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   coverImageUrl: {
     type: DataTypes.STRING,
     allowNull: true,
+    defaultValue:
+      "https://images-eu.ssl-images-amazon.com/images/I/81m4xtW13UL.__AC_SX300_SY300_QL70_ML2_.jpg",
     validate: {
       isUrl: true,
     },
