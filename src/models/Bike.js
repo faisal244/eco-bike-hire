@@ -1,11 +1,11 @@
 // import important parts of sequelize library
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
 
 // import our database connection from config.js
-const sequelize = require("../config/connection");
+const sequelize = require('../config/connection');
 
 //import Category for
-const Category = require("./Category");
+const Category = require('./Category');
 
 // Initialize Bike model (table) by extending off Sequelize's Model class
 class Bike extends Model {}
@@ -39,8 +39,8 @@ const schema = {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      Model: Category,
-      key: "id",
+      model: Category,
+      key: 'id',
     },
   },
   description: {
@@ -51,7 +51,7 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
     defaultValue:
-      "https://images-eu.ssl-images-amazon.com/images/I/81m4xtW13UL.__AC_SX300_SY300_QL70_ML2_.jpg",
+      'https://images-eu.ssl-images-amazon.com/images/I/81m4xtW13UL.__AC_SX300_SY300_QL70_ML2_.jpg',
     validate: {
       isUrl: true,
     },
@@ -63,7 +63,7 @@ const options = {
   timestamps: true,
   underscored: false,
   freezeTableName: true,
-  modelName: "bike",
+  modelName: 'bike',
 };
 
 Bike.init(schema, options);

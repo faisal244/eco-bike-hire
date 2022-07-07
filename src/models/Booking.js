@@ -1,11 +1,13 @@
 // import important parts of sequelize library
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
 
 // import our database connection from config.js
-const sequelize = require("../config/connection");
+const sequelize = require('../config/connection');
+const Bike = require('./Bike');
+const User = require('./User');
 
 //import Category for
-const Category = require("./Category");
+const Category = require('./Category');
 
 // Initialize Bike model (table) by extending off Sequelize's Model class
 class Booking extends Model {}
@@ -30,19 +32,27 @@ const schema = {
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-references 
-    autoIncrement: true,
+    references: {
+      model: User,
+      key: 'id',
+    },
+  },
+  bikeId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: Bike,
+      key: 'id',
+    },
   },
   pricePlan: {
+    type: DataTypes.STRING(10),
+    allowNull: false,
+  },
+  startDate: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-
-  bikeId: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-
   duration: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -51,39 +61,25 @@ references
       isNumeric: true,
     },
   },
-
-  discountAmount: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-
-  total: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 20,
-    validate: {
-      isNumeric: true,
-    },
-  },
-
-  startDate: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-
   endDate: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-
-  subTotal: {
+  total: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    defaultValue: 20,
     validate: {
       isNumeric: true,
     },
   },
+  // subTotal: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: false,
+  //   defaultValue: 20,
+  //   validate: {
+  //     isNumeric: true,
+  //   },
+  // },
 };
 
 const options = {
@@ -91,9 +87,9 @@ const options = {
   timestamps: true,
   underscored: false,
   freezeTableName: true,
-  modelName: "booking",
+  modelName: 'booking',
 };
 
-Price.init(schema, options);
+Booking.init(schema, options);
 
 module.exports = Booking;

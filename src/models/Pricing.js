@@ -1,11 +1,11 @@
 // import important parts of sequelize library
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
 
 // import our database connection from config.js
-const sequelize = require("../config/connection");
+const sequelize = require('../config/connection');
 
 //import Category for
-const Category = require("./Category");
+const Category = require('./Category');
 
 // Initialize Bike model (table) by extending off Sequelize's Model class
 class Price extends Model {}
@@ -50,9 +50,9 @@ const options = {
   timestamps: true,
   underscored: false,
   freezeTableName: true,
-  modelName: "price",
+  modelName: 'price',
 };
 
-Price.init(schema, options);
+Pricing.init(schema, options);
 
 module.exports = Price;
