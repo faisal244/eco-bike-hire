@@ -1,4 +1,3 @@
-// import models
 const Bike = require("./Bike");
 const User = require("./User");
 const Category = require("./Category");
@@ -7,27 +6,22 @@ const Pricing = require("./Pricing");
 
 Booking.belongsTo(User, {
   foreignKey: "userId",
-  onDelete: "CASCADE",
 });
 
 User.hasMany(Booking, {
   foreignKey: "userId",
-  onDelete: "CASCADE",
 });
 
 Booking.belongsTo(Bike, {
   foreignKey: "category_id",
-  onDelete: "CASCADE",
 });
 
 Bike.hasMany(Booking, {
   foreignKey: "category_id",
-  onDelete: "CASCADE",
 });
 
 Bike.belongsTo(Category, {
   foreignKey: "category_id",
-  onDelete: "CASCADE",
 });
 
 Category.hasMany(Bike, {
@@ -36,7 +30,6 @@ Category.hasMany(Bike, {
 
 Pricing.belongsTo(Bike, {
   foreignKey: "bikeId",
-  onDelete: "CASCADE",
 });
 
 Bike.hasMany(Pricing, {

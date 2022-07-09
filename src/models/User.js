@@ -20,15 +20,12 @@ class User extends Model {
     return isValid;
   }
 }
+
 const schema = {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-    allowNull: false,
-  },
-  title: {
-    type: DataTypes.STRING(10),
     allowNull: false,
   },
   firstName: {
@@ -47,7 +44,7 @@ const schema = {
     },
   },
   password: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.STRING,
     allowNull: false,
   },
   profileImageUrl: {
@@ -55,6 +52,9 @@ const schema = {
     allowNull: false,
     defaultValue:
       "https://files.slack.com/files-pri/T0384D4BTK2-F03PEMEFZT2/image.png",
+    validate: {
+      isUrl: true,
+    },
   },
 };
 

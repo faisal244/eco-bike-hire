@@ -1,16 +1,10 @@
-// import important parts of sequelize library
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require("sequelize");
 
-// import our database connection from config.js
-const sequelize = require('../config/connection');
+const connection = require("../config/connection");
+const Category = require("./Category");
 
-//import Category for
-const Category = require('./Category');
-
-// Initialize Bike model (table) by extending off Sequelize's Model class
 class Bike extends Model {}
 
-// set up fields and rules for Bike model
 const schema = {
   id: {
     type: DataTypes.INTEGER,
@@ -32,15 +26,6 @@ const schema = {
     validate: {
       isNumeric: true,
       min: 1,
-      max: 50,
-    },
-  },
-  categoryId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: Category,
-      key: 'id',
     },
   },
   description: {
@@ -51,9 +36,17 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
     defaultValue:
-      'https://images-eu.ssl-images-amazon.com/images/I/81m4xtW13UL.__AC_SX300_SY300_QL70_ML2_.jpg',
+      "https://images-eu.ssl-images-amazon.com/images/I/81m4xtW13UL.__AC_SX300_SY300_QL70_ML2_.jpg",
     validate: {
       isUrl: true,
+    },
+  },
+  categoryId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: Category,
+      key: "id",
     },
   },
 };
@@ -63,7 +56,7 @@ const options = {
   timestamps: true,
   underscored: false,
   freezeTableName: true,
-  modelName: 'bike',
+  modelName: "bike",
 };
 
 Bike.init(schema, options);

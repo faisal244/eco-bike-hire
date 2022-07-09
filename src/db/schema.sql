@@ -3,5 +3,3 @@ DROP DATABASE IF EXISTS eco_bike_db;
 
 -- CREATE DATABASE
 CREATE DATABASE eco_bike_db;
-
-

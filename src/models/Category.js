@@ -1,11 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
-const connection = require("../config/connection");
 
-const Bike = require("./Bike");
+const connection = require("../config/connection");
 
 class Category extends Model {}
 
-Category.init({
+const schema = {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -16,14 +15,16 @@ Category.init({
     type: DataTypes.STRING(30),
     allowNull: false,
   },
-});
+};
 
 const options = {
   sequelize: connection,
   timestamps: true,
   underscored: false,
   freezeTableName: true,
-  modelName: "user",
+  modelName: "category",
 };
+
+Category.init(schema, options);
 
 module.exports = Category;
