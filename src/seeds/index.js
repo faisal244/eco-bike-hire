@@ -6,15 +6,18 @@ const seedPricing = require("./pricing-seeds");
 const seedUsers = require("./user-seeds");
 
 const seedAll = async () => {
-  await connection.sync({ force: true });
-  console.log("DATABASE SYNCED");
+  try {
+    await connection.sync({ force: true });
+    console.log("✅ connected to database");
 
-  await seedCategories();
-  await seedBikes();
-  await seedBookings();
-  await seedPricing();
-  await seedUsers();
-
+    await seedCategories();
+    await seedBikes();
+    await seedUsers();
+    await seedPricing();
+    await seedBookings();
+  } catch (error) {
+    console.log(`[ERROR]: Failed to seed database | ${error.message}`);
+  }
   process.exit(0);
 };
 

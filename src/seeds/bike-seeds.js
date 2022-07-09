@@ -1,6 +1,6 @@
 const Bike = require("../models/Bike");
 
-const bikeData = [
+const bikes = [
   {
     brand: "Ampere",
     modelType: "Deluxe Step Through 2022",
@@ -45,7 +45,6 @@ const bikeData = [
     wheelSize: 20,
     description:
       "The folding design lets you bring your bike on public transport with ease. The Tilt 120 folds up for easy transport in a car, train or bus. Do you want a bike that has it all and can be taken anywhere? The Tilt 120 can be easily stored in the boot of a car. With its 6 speeds and mudguard, you're all set for an adventure.",
-    coverImageUrl: "",
     categoryId: 3,
   },
 ];
@@ -53,11 +52,10 @@ const bikeData = [
 const seedBikes = async () => {
   await Bike.destroy({
     where: {},
-    truncate: true,
   });
-  await Bike.bulkCreate(bikeData);
+  await Bike.bulkCreate(bikes);
 
-  console.log("BIKES SEEDED");
+  console.log("✅ bikes");
 };
 
 module.exports = seedBikes;

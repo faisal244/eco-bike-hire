@@ -1,6 +1,6 @@
 const Booking = require("../models/Booking");
 
-const BookingData = [
+const bookings = [
   {
     isDaily: 1,
     startDate: 2022 - 08 - 01,
@@ -40,13 +40,12 @@ const BookingData = [
 ];
 
 const seedBookings = async () => {
-  // await Booking.destroy({
-  //   where: {},
-  //   truncate: true,
-  // });
-  await Booking.bulkCreate(BookingData);
+  await Booking.destroy({
+    where: {},
+  });
+  await Booking.bulkCreate(bookings);
 
-  console.log("BOOKING SEEDED");
+  console.log("✅ bookings");
 };
 
 module.exports = seedBookings;

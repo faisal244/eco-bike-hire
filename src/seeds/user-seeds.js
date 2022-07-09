@@ -1,6 +1,6 @@
 const User = require("../models/User");
 
-const UserData = [
+const users = [
   {
     firstName: "Amy",
     lastName: "Johnson",
@@ -44,13 +44,15 @@ const UserData = [
 ];
 
 const seedUsers = async () => {
-  // await User.destroy({
-  //   where: {},
-  //   truncate: true,
-  // });
-  await User.bulkCreate(UserData);
+  await User.destroy({
+    where: {},
+  });
 
-  console.log("USER SEEDED");
+  const promises = users.map((user) => User.create(user));
+
+  await Promise.all(promises);
+
+  console.log("✅ users");
 };
 
 module.exports = seedUsers;

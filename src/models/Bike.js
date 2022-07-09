@@ -38,30 +38,29 @@ const schema = {
     validate: {
       isNumeric: true,
     },
-    wheelSize: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      validate: {
-        isNumeric: true,
-      },
+  },
+  wheelSize: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    validate: {
+      isNumeric: true,
     },
-
-    coverImageUrl: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue:
-        "https://images-eu.ssl-images-amazon.com/images/I/81m4xtW13UL.__AC_SX300_SY300_QL70_ML2_.jpg",
-      validate: {
-        isUrl: true,
-      },
+  },
+  coverImageUrl: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    defaultValue:
+      "https://images-eu.ssl-images-amazon.com/images/I/81m4xtW13UL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    validate: {
+      isUrl: true,
     },
-    categoryId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: Category,
-        key: "id",
-      },
+  },
+  categoryId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: Category,
+      key: "id",
     },
   },
 };

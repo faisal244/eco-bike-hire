@@ -1,6 +1,6 @@
 const Category = require("../models/Category");
 
-const categoryData = [
+const categories = [
   { categoryName: "Mountain Bike" },
   { categoryName: "Road Bike" },
   { categoryName: "Folding Bike" },
@@ -10,11 +10,10 @@ const categoryData = [
 const seedCategories = async () => {
   await Category.destroy({
     where: {},
-    truncate: true,
   });
-  await Category.bulkCreate(categoryData);
+  await Category.bulkCreate(categories);
 
-  console.log("CATEGORIES SEEDED");
+  console.log("✅ categories");
 };
 
 module.exports = seedCategories;
