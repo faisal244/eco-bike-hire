@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const auth = require("./auth");
 const api = require("./api");
-const view = require("./views");
+const views = require("./Views");
 
 router.use("/auth", auth);
 router.use("/api", api);
