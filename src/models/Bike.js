@@ -45,6 +45,7 @@ const schema = {
         isNumeric: true,
       },
     },
+
     coverImageUrl: {
       type: DataTypes.STRING,
       allowNull: true,
