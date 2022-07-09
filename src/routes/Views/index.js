@@ -12,7 +12,7 @@ router.get("/login", renderLoginPage);
 router.get("/signup", renderSignupPage);
 router.get("/booking/", renderBookingsPage);
 router.get("/booking/:id", renderBookingPage);
-router.get("/bike/", renderBooking);
-router.get("/bikes/:id", renderBooking);
+router.get("/bike/", renderBookingPage);
+router.get("/bikes/:id", renderBookingsPage);
 
 module.exports = router;

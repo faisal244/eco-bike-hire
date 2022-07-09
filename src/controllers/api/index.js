@@ -1,31 +1,60 @@
 const path = require("path");
 
-const renderHomePage = (req, res) => {
-  const filePath = path.join(__dirname, "../../../public/publicHome.html");
-  return res.sendFile(filePath);
+const getAllBikes = async (req, res) => {
+  // try {
+  //   return res.render("getAllBikes");
+  // } catch (error) {
+  //   console.log(`[ERROR]: Failed to get all playlists | ${error.message}`);
+
+  //   return res.status(500).json({ success: false });
+  return res.render("getAllBikes");
+  //}
+};
+const getSingleBike = async (req, res) => {
+  return res.render("getSingleBikes");
+  // try {
+  // //   const { id } = req.params;
+  // //   const data = await Playlist.findByPk(id);
+
+  // //   if (!data) {
+  // //     return res.status(404).json({ success: false });
+  // //   }
+
+  // //   return res.json({ success: true, data });
+  // // } catch (error) {
+  // //   console.log(`[ERROR]: Failed to get all playlists | ${error.message}`);
+
+  // //   return res.status(500).json({ success: false });
+  // }
 };
 
-const renderLoginPage = (req, res) => {
-  //return res.render("login", { currentPage: "login" });
-};
+const getAllBookings = async (req, res) => {
+  // try {
+  // } catch (error) {
+  //   console.log(`[ERROR]: Failed to get all playlists | ${error.message}`);
 
-const renderSignupPage = (req, res) => {
-  //return res.render("signup", { currentPage: "signup" });
+  //   return res.status(500).json({ success: false });
+  // }
+  return res.render("getAllBookings");
 };
-const renderBookingsPage = (req, res) => {
-  const filePath = path.join(__dirname, "../../../public/createPlaylist.html");
-  //return res.sendFile(filePath);
-};
-
-const renderBookingPage = (req, res) => {
-  const filePath = path.join(__dirname, "../../../public/singlePlaylist.html");
-  //return res.sendFile(filePath);
+const getSingleBooking = async (req, res) => {
+  // try {
+  //   const { id } = req.params;
+  //   const data = await Playlist.findByPk(id);
+  //   if (!data) {
+  //     return res.status(404).json({ success: false });
+  //   }
+  //   return res.json({ success: true, data });
+  // } catch (error) {
+  //   console.log(`[ERROR]: Failed to get all playlists | ${error.message}`);
+  //   return res.status(500).json({ success: false });
+  // }
+  return res.render("getSingleBooking");
 };
 
 module.exports = {
-  renderHomePage,
-  renderLoginPage,
-  renderSignupPage,
-  renderBookingsPage,
-  renderBookingPage,
+  getAllBikes,
+  getSingleBike,
+  getAllBookings,
+  getSingleBooking,
 };
