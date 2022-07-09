@@ -1,16 +1,17 @@
-const { Category } = require("../models/Category");
+const Category = require("../models/Category");
 
 const categoryData = [
-  {
-    category_name: "Mountain Bike",
-  },
-  { category_name: "Road Bike" },
-  { category_name: "Folding Bike" },
-  {
-    category_name: "Electric Bike",
-  },
+  { categoryName: "Mountain Bike" },
+  { categoryName: "Road Bike" },
+  { categoryName: "Folding Bike" },
+  { categoryName: "Electric Bike" },
 ];
 
-const seedCategories = () => Category.bulkCreate(categoryData);
+const seedCategories = async () => {
+  await Category.destroy();
+  await Category.bulkCreate(categoryData);
+
+  console.log("CATEGORIES SEEDED");
+};
 
 module.exports = seedCategories;

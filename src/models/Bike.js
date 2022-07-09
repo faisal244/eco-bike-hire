@@ -20,6 +20,11 @@ const schema = {
     type: DataTypes.STRING(50),
     allowNull: false,
   },
+
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
   stock: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -28,25 +33,35 @@ const schema = {
       min: 1,
     },
   },
-  description: {
-    type: DataTypes.TEXT,
+  frameSize: {
+    type: DataTypes.DECIMAL(2, 2),
     allowNull: false,
-  },
-  coverImageUrl: {
-    type: DataTypes.STRING,
-    allowNull: true,
-    defaultValue:
-      "https://images-eu.ssl-images-amazon.com/images/I/81m4xtW13UL.__AC_SX300_SY300_QL70_ML2_.jpg",
     validate: {
-      isUrl: true,
+      isNumeric: true,
     },
-  },
-  categoryId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: Category,
-      key: "id",
+    wheelSize: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        isNumeric: true,
+      },
+    },
+    coverImageUrl: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue:
+        "https://images-eu.ssl-images-amazon.com/images/I/81m4xtW13UL.__AC_SX300_SY300_QL70_ML2_.jpg",
+      validate: {
+        isUrl: true,
+      },
+    },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Category,
+        key: "id",
+      },
     },
   },
 };
