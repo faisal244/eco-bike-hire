@@ -50,7 +50,10 @@ const bikeData = [
 ];
 
 const seedBikes = async () => {
-  await Bike.destroy();
+  await Bike.destroy({
+    where: {},
+    truncate: true,
+  });
   await Bike.bulkCreate(bikeData);
 
   console.log("BIKES SEEDED");

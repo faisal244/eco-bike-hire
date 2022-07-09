@@ -8,7 +8,10 @@ const categoryData = [
 ];
 
 const seedCategories = async () => {
-  await Category.destroy();
+  await Category.destroy({
+    where: {},
+    truncate: true,
+  });
   await Category.bulkCreate(categoryData);
 
   console.log("CATEGORIES SEEDED");

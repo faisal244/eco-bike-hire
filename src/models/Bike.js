@@ -20,7 +20,6 @@ const schema = {
     type: DataTypes.STRING(50),
     allowNull: false,
   },
-
   description: {
     type: DataTypes.TEXT,
     allowNull: false,
@@ -34,7 +33,7 @@ const schema = {
     },
   },
   frameSize: {
-    type: DataTypes.DECIMAL(2, 2),
+    type: DataTypes.DECIMAL(8, 2),
     allowNull: false,
     validate: {
       isNumeric: true,
