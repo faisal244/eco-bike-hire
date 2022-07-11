@@ -13,26 +13,26 @@ User.hasMany(Booking, {
 });
 
 Booking.belongsTo(Bike, {
-  foreignKey: "category_id",
+  foreignKey: "bikeId",
 });
 
 Bike.hasMany(Booking, {
-  foreignKey: "category_id",
+  foreignKey: "bikeId",
 });
 
 Bike.belongsTo(Category, {
-  foreignKey: "category_id",
+  foreignKey: "categoryId",
 });
 
 Category.hasMany(Bike, {
-  foreignKey: "category_id",
+  foreignKey: "categoryId",
 });
 
 Pricing.belongsTo(Bike, {
   foreignKey: "bikeId",
 });
 
-Bike.hasMany(Pricing, {
+Bike.hasOne(Pricing, {
   foreignKey: "bikeId",
 });
 
