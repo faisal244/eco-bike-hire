@@ -1,15 +1,20 @@
 const path = require("path");
 
-const getAllBikes = async (req, res) => {
-  // try {
-  //   return res.render("getAllBikes");
-  // } catch (error) {
-  //   console.log(`[ERROR]: Failed to get all playlists | ${error.message}`);
+const Bike = require("../../models/Bike");
 
-  //   return res.status(500).json({ success: false });
-  return res.render("getAllBikes");
-  //}
+const getAllBikes = async (req, res) => {
+  try {
+    const data = await Bike.findAll({});
+
+    console.log(data);
+    return res.json({ success: true, data });
+  } catch (error) {
+    console.log(`[ERROR]: Failed to get all bikes | ${error.message}`);
+
+    return res.status(500).json({ success: false });
+  }
 };
+
 const getSingleBike = async (req, res) => {
   return res.render("getSingleBikes");
   // try {
