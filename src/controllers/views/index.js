@@ -34,7 +34,7 @@ const renderBookingsPage = (req, res) => {
   return res.render("Bookings");
 };
 
-const renderBookingPage = (req, res) => {
+const myBookingsPage = (req, res) => {
   const filePath = path.join(__dirname, "../../../public/singlePlaylist.html");
   return res.render("booking");
 };
@@ -46,5 +46,5 @@ module.exports = {
   renderBikesPage,
   renderBikePage,
   renderBookingsPage,
-  renderBookingPage,
+  myBookingsPage,
 };
