@@ -1,4 +1,5 @@
 const router = require("express").Router();
+
 const {
   renderHomePage,
   renderLoginPage,
@@ -6,10 +7,12 @@ const {
   renderBookingsPage,
   myBookingsPage,
 } = require("../../controllers/views");
+
 // Public Routes
 router.get("/", renderHomePage);
 router.get("/login", renderLoginPage);
 router.get("/signup", renderSignupPage);
+
 // Private Routes
 router.get("/booking/", renderBookingsPage);
 router.get("/booking/:id", myBookingsPage);
