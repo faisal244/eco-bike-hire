@@ -20,6 +20,10 @@ const schema = {
     type: DataTypes.STRING(50),
     allowNull: false,
   },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
   stock: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -28,9 +32,19 @@ const schema = {
       min: 1,
     },
   },
-  description: {
-    type: DataTypes.TEXT,
+  frameSize: {
+    type: DataTypes.DECIMAL(8, 2),
     allowNull: false,
+    validate: {
+      isNumeric: true,
+    },
+  },
+  wheelSize: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    validate: {
+      isNumeric: true,
+    },
   },
   coverImageUrl: {
     type: DataTypes.STRING,
