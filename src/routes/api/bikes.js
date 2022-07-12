@@ -1,7 +1,11 @@
-const router = require("express").Router();
+const { Router } = require("express");
 
 const { getAllBikes, getSingleBike } = require("../../controllers/api");
 
+const router = Router();
+
 router.get("/", getAllBikes);
+
 router.get("/:id", getSingleBike);
-// router.post("/", createPlaylist);
+
+module.exports = router;

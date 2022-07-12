@@ -1,8 +1,10 @@
-const router = require("express").Router();
+const { Router } = require("express");
+
 const { getAllBookings, getSingleBooking } = require("../../controllers/api");
+
+const router = Router();
 
 router.get("/", getAllBookings);
 router.get("/:id", getSingleBooking);
-//router.post("/", createPlaylist);
 
 module.exports = router;
