@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const { getAllBikes, getSingleBike } = require("../../controllers/api");
+const { getAllBikes, getSingleBike } = require("../../controllers/api/bikes");
 
 const router = Router();
 

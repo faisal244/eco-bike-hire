@@ -1,14 +1,8 @@
-const path = require("path");
-
-const Booking = require("../../models/Booking");
+const { Booking } = require("../../models");
 
 const getAllBookings = async (req, res) => {
   try {
     const data = await Booking.findAll({});
-
-    if (!data) {
-      return res.status(500).json({ message: "Bookings not found" });
-    }
 
     return res.json({ success: true, data });
   } catch (error) {
@@ -16,7 +10,7 @@ const getAllBookings = async (req, res) => {
 
     return res
       .status(500)
-      .json({ success: false, errorMessage: error.message });
+      .json({ success: false, error: "Failed to get all bookings" });
   }
 };
 
@@ -27,7 +21,11 @@ const getSingleBooking = async (req, res) => {
     const data = await Booking.findByPk(id);
 
     if (!data) {
-      return res.status(500).json({ message: "Booking not found" });
+      console.log(`[ERROR]: Booking not found`);
+
+      return res
+        .status(404)
+        .json({ success: false, error: "Booking not found" });
     }
 
     return res.json({ success: true, data });
@@ -36,7 +34,7 @@ const getSingleBooking = async (req, res) => {
 
     return res
       .status(500)
-      .json({ success: false, errorMessage: error.message });
+      .json({ success: false, error: "Failed to get single booking" });
   }
 };
 

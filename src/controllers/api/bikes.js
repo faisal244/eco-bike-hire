@@ -1,14 +1,8 @@
-const path = require("path");
-
-const Bike = require("../../models/Bike");
+const { Bike } = require("../../models");
 
 const getAllBikes = async (req, res) => {
   try {
     const data = await Bike.findAll({});
-
-    if (!data) {
-      return res.status(500).json({ message: "Bikes not found" });
-    }
 
     return res.json({ success: true, data });
   } catch (error) {
@@ -16,7 +10,7 @@ const getAllBikes = async (req, res) => {
 
     return res
       .status(500)
-      .json({ success: false, errorMessage: error.message });
+      .json({ success: false, error: "Failed to get all bikes" });
   }
 };
 
@@ -27,7 +21,9 @@ const getSingleBike = async (req, res) => {
     const data = await Bike.findByPk(id);
 
     if (!data) {
-      return res.status(500).json({ message: "Bike not found" });
+      console.log(`[ERROR]: Bike not found`);
+
+      return res.status(404).json({ success: false, error: "Bike not found" });
     }
 
     return res.json({ success: true, data });
@@ -36,7 +32,7 @@ const getSingleBike = async (req, res) => {
 
     return res
       .status(500)
-      .json({ success: false, errorMessage: error.message });
+      .json({ success: false, error: "Failed to get single bike" });
   }
 };
 
