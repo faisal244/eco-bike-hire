@@ -1,16 +1,17 @@
-const signupForm = $('#signup-form');
-const loginForm = $('#login-form');
-const errorContainer = $('#error-container');
+const signupForm = $("#signup-form");
+const loginForm = $("#login-form");
+const errorText = $("#error-text");
 
 const handleSignup = async (event) => {
-  console.log('working');
   event.preventDefault();
 
-  const firstName = $('#firstName').val();
-  const lastName = $('#lastName').val();
-  const email = $('#email').val();
-  const password = $('#password').val();
-  const confirmPassword = $('#confirmPassword').val();
+  const firstName = $("#firstName").val();
+  const lastName = $("#lastName").val();
+  const email = $("#email").val();
+  const password = $("#password").val();
+  const confirmPassword = $("#confirmPassword").val();
+
+  errorText.empty();
 
   if (firstName && lastName && email && password && confirmPassword) {
     if (password === confirmPassword) {
@@ -22,42 +23,34 @@ const handleSignup = async (event) => {
           password,
         };
 
-        const response = await fetch('/auth/signup', {
-          method: 'POST',
+        const response = await fetch("/auth/signup", {
+          method: "POST",
           body: JSON.stringify(payload),
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         });
 
         const data = await response.json();
-        console.log(data);
         if (data.success) {
-          window.location.assign('/login');
+          window.location.assign("/login");
         } else {
-          //   renderError('signup-error', 'Failed to create account. Try again.');
-          console.log('failed to create account1');
-          errorContainer.append(
+          errorText.append(
             `<p class="text-danger">error message: failed to create account</p>`
           );
         }
       } catch (error) {
-        // renderError('signup-error', 'Failed to create account. Try again.');
-        errorContainer.append(
+        errorText.append(
           `<p class="text-danger">error message: failed to create account</p>`
         );
       }
     } else {
-      //   renderError('signup-error', 'Passwords do not match. Try again.');
-      console.log('passwords do not match');
-      errorContainer.append(
+      errorText.append(
         `<p class="text-danger">error message: passwords do not match</p>`
       );
     }
   } else {
-    // renderError('signup-error', 'Please complete all required fields.');
-    console.log('please complete all fields');
-    errorContainer.append(
+    errorText.append(
       `<p class="text-danger">error message: please complete all fields</p>`
     );
   }
@@ -66,8 +59,10 @@ const handleSignup = async (event) => {
 const handleLogin = async (event) => {
   event.preventDefault();
 
-  const email = $('#email').val();
-  const password = $('#password').val();
+  const email = $("#email").val();
+  const password = $("#password").val();
+
+  errorText.empty();
 
   if (email && password) {
     try {
@@ -76,26 +71,32 @@ const handleLogin = async (event) => {
         password,
       };
 
-      const response = await fetch('/auth/login', {
-        method: 'POST',
+      const response = await fetch("/auth/login", {
+        method: "POST",
         body: JSON.stringify(payload),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
       const data = await response.json();
 
       if (data.success) {
-        window.location.assign('/dashboard');
+        window.location.assign("/dashboard");
       } else {
-        renderError('login failed. please try again.');
+        errorText.append(
+          `<p class="text-danger">error message: failed to login</p>`
+        );
       }
     } catch (error) {
-      renderError('login failed. please try again.');
+      errorText.append(
+        `<p class="text-danger">error message: failed to login</p>`
+      );
     }
   } else {
-    renderError('login-error', 'Please complete all required fields.');
+    errorText.append(
+      `<p class="text-danger">error message: please complete all fields</p>`
+    );
   }
 };
 
