@@ -3,7 +3,6 @@ const loginForm = $('#login-form');
 const errorContainer = $('#error-container');
 
 const handleSignup = async (event) => {
-  console.log('working');
   event.preventDefault();
 
   const firstName = $('#firstName').val();
