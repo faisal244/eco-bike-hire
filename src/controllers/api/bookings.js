@@ -1,4 +1,4 @@
-const { Booking } = require("../../models");
+const { Booking, Pricing } = require("../../models");
 
 const getAllBookings = async (req, res) => {
   try {
@@ -38,7 +38,45 @@ const getSingleBooking = async (req, res) => {
   }
 };
 
+const createBooking = async (req, res) => {
+  try {
+    const { bikeId, isDaily, startDate, duration } = req.body;
+
+    console.log(req.body);
+    const userId = 1;
+
+    // const userId = req.session.user.id;
+    const pricingFromDb = await Pricing.findOne({ where: { bikeId } });
+
+    const pricing = pricingFromDb.get({ plain: true });
+    console.log(pricing);
+
+    const cost = isDaily ? pricing.dailyPrice : pricing.weeklyPrice;
+    console.log(cost);
+
+    const total = cost * duration;
+    console.log(total);
+
+    await Booking.create({
+      bikeId,
+      isDaily,
+      startDate,
+      duration,
+      userId,
+      total,
+      endDate: startDate,
+    });
+
+    return res.json({ success: true });
+  } catch (error) {
+    console.log(`[ERROR]: Failed to create booking | ${error.message}`);
+
+    return res.status(500).json({ success: false });
+  }
+};
+
 module.exports = {
   getAllBookings,
   getSingleBooking,
+  createBooking,
 };
