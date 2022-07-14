@@ -44,7 +44,7 @@ const createBooking = async (req, res) => {
     const { bikeId, isDaily, startDate, duration } = req.body;
 
     console.log(req.body);
-    const userId = 1;
+    const userId = req.session.user.id || 1;
 
     // const userId = req.session.user.id;
     const pricingFromDb = await Pricing.findOne({ where: { bikeId } });
@@ -58,6 +58,16 @@ const createBooking = async (req, res) => {
     const total = cost * duration;
     console.log(total);
 
+    if (isDaily && duration > 10) {
+      console.log(`[ERROR]: Duration is too long, please select again |`);
+      return res.status(500).json({ success: false });
+    }
+
+    if (!isDaily && duration > 8) {
+      console.log(`[ERROR]: Duration is too long, please select again |`);
+      return res.status(500).json({ success: false });
+    }
+
     const endDate = moment(startDate).add(duration, isDaily ? "days" : "weeks");
 
     const bookingComplete = await Booking.create({
@@ -69,9 +79,9 @@ const createBooking = async (req, res) => {
       total,
       endDate,
     });
-    console.log(bookingComplete);
-
-    return res.json({ success: true });
+    // console.log(bookingComplete.get({ plain: true }));
+    const bookingData = bookingComplete.get({ plain: true });
+    return res.json({ success: true, data: bookingData });
   } catch (error) {
     console.log(`[ERROR]: Failed to create booking | ${error.message}`);
 
