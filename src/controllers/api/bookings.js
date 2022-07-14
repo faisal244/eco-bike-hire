@@ -1,3 +1,4 @@
+const moment = require("moment");
 const { Booking, Pricing } = require("../../models");
 
 const getAllBookings = async (req, res) => {
@@ -57,15 +58,18 @@ const createBooking = async (req, res) => {
     const total = cost * duration;
     console.log(total);
 
-    await Booking.create({
+    const endDate = moment(startDate).add(duration, isDaily ? "days" : "weeks");
+
+    const bookingComplete = await Booking.create({
       bikeId,
       isDaily,
       startDate,
       duration,
       userId,
       total,
-      endDate: startDate,
+      endDate,
     });
+    console.log(bookingComplete);
 
     return res.json({ success: true });
   } catch (error) {
