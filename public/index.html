@@ -18,7 +18,8 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+
     <title>Bike</title>
   </head>
   <body>
@@ -49,24 +50,15 @@
                   <span class="text-primary"> • </span>
                   <span>Wheel Size: 25 <br /></span>
                 </div>
-                <p class="text-truncate mb-4 mb-md-0">
-                  Using the most popular step-through shaping, the light but
-                  robust frame includes a fully integrated<br />
-                  battery creating a sleek and ultra-contemporary look.
-                  <br />Perfect for city riding, but equally at home on a
-                  country trail. The powerful 65 Nm motor will allow your
-                  <br />trips to be limited only by your imagination. While the
-                  quick-release battery makes charging simple<br />
-                  and delivers an impressive range with the larger 14Ah battery.
-                  With "best in class" components including Shimano gears and <br> a
-                  sleek lightweight Zoom Suspension Fork (18 inch frame only) as
-                  well as a large LCD display, this high specification electric
-                  bike <br> compromises on nothing. <br>
+                <p class="mb-4 mb-md-0">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Exercitationem, voluptate! Iure, aliquam rem. Molestias,
+                  tempora in. Minus labore modi obcaecati voluptatem dolorum
+                  veniam quasi, placeat voluptate repellendus vitae nam
+                  eligendi.
 
-                 <ul > <li><strong>Weekly price: £35.</strong></li>
-                    <li> <strong>Daily price: £20.</strong> </li>
-                   </ul>
-
+                  <span class="tag">Weekly price: £30</span>
+                  <span class="tag">Daily price: £20</span>
                 </p>
               </div>
             </div>
@@ -88,7 +80,7 @@
                   <div class="row mb-4">
                     <div class="col">
                       <div class="form-outline">
-                        <div class="mb-3">
+                        <div class="mb-4">
                           <label for="selectPlan"
                             >Select plan <span> * </span></label
                           >
@@ -97,7 +89,19 @@
                             <option>Daily</option>
                           </select>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-4">
+                          <select
+                            class="form-select"
+                            aria-label="Default select example"
+                          >
+                            <option selected>Choose how long</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="3">Four</option>
+                          </select>
+                        </div>
+                        <div class="mb-4">
                           <label class="form-label" for="rent-date">
                             Start date <span> * </span></label
                           >
@@ -108,22 +112,25 @@
                             min="2022-07-14"
                             required=""
                           />
-                          </div>
-                          <div class="mb-3">
+                        </div>
+                        <!-- <div class="mb-3">
                           <label class="form-label" for="return-date"
-                            >Return date <span> * </span></label
+                            >duration <span> * </span></label
                           >
                           <input
-                            type="date"
+                            type="text"
                             id="return-date"
                             class="form-control"
                             min="2022-07-14"
                             required=""
                           />
                           </div>
-                        </div>
+                        </div> -->
                         <div class="mt-5 row justify-content-center">
-                          <button type="submit" class="btn btn-secondary btn-lg">
+                          <button
+                            type="submit"
+                            class="btn btn-secondary btn-lg"
+                          >
                             Submit
                           </button>
                         </div>
