@@ -1,4 +1,4 @@
-const { User } = require("../../models/User");
+const User = require('../../models/User');
 
 const login = async (req, res) => {
   try {
@@ -37,11 +37,12 @@ const login = async (req, res) => {
 const signup = async (req, res) => {
   try {
     // get the user data from payload
-    const { firstName, lastName, email, password, profileImageUrl } = req.body;
+    const { firstName, lastName, email, password } = req.body;
 
     // check if user exists
     const user = await User.findOne({ where: { email } });
 
+    console.log('user' + JSON.stringify(user));
     if (user) {
       console.log(
         `[ERROR]: Failed to create user | Email address of ${email} already exists`
@@ -56,8 +57,10 @@ const signup = async (req, res) => {
       lastName,
       email,
       password,
-      profileImageUrl,
+      // profileImageUrl,
     });
+
+    console.log('abc', data);
 
     return res.json({ success: true });
   } catch (error) {
