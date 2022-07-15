@@ -1,0 +1,91 @@
+<main class="container">
+  <section class="my-4">
+    <div class="card mb-3 p-2">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="{{bike.coverImageUrl}}"
+            alt="Trendy Pants and Shoes"
+            class="img-fluid rounded-start"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{bike.brand}} {{bike.modelType}}</h5>
+            <hr />
+            <p class="card-text">
+              {{bike.description}}
+            </p>
+            <hr />
+            <p class="card-text">
+              <small class="text-muted"><strong>BRAND:</strong>
+                {{bike.brand}}</small>
+            </p>
+            <p class="card-text">
+              <small class="text-muted"><strong>Model:</strong>
+                {{bike.modelType}}</small>
+            </p>
+            <p class="card-text">
+              <small class="text-muted"><strong>FRAME:</strong>
+                {{bike.frameSize}}
+                inches</small>
+            </p>
+            <p class="card-text">
+              <small class="text-muted"><strong>WHEEL:</strong>
+                {{bike.wheelSize}}
+                inches</small>
+            </p>
+          </div>
+          <div class="d-flex flex-row flex-wrap justify-content-around py-4">
+            <div class="badge bg-info fs-3 cost-badge mb-2">
+              <h3>£{{bike.pricing.dailyPrice}}</h3>
+              <div class="fs-6 text-muted">daily</div>
+            </div>
+            <div class="badge bg-info fs-3 cost-badge mb-2">
+              <h3>£{{bike.pricing.weeklyPrice}}</h3>
+              <div class="fs-6 text-muted">weekly</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="my-4">
+    <div class="card text-center">
+      <div class="card-header">Make your booking</div>
+      <div class="card-body">
+        <h5 class="card-title">Booking Form</h5>
+        <form class="mx-4">
+          <div class="form-floating mb-3">
+            <select
+              class="form-select"
+              id="bookingType"
+              aria-label="Floating label select example"
+            >
+              <option selected value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+            </select>
+            <label for="bookingType">Select booking type</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="duration" />
+            <label for="duration">Enter booking duration</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="date"
+              class="form-control"
+              id="startDate"
+              min="{{currentDate}}"
+            />
+            <label for="startDate">Booking start date</label>
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" type="submit">Book Now</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
