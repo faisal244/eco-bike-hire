@@ -12,6 +12,7 @@ html {
   padding: 5px 15px;
   font-size: 20px;
   cursor: pointer;
+  margin: 10px;
 }
 
 nav {
@@ -39,46 +40,7 @@ nav {
   cursor: pointer;
   outline: none;
 }
-.navbar .navbar-toggler .menu-icon-bar {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-  height: 2px;
-  background-color: #fff;
-  opacity: 0;
-  -webkit-transform: translateY(-1px);
-  -ms-transform: translateY(-1px);
-  transform: translateY(-1px);
-  transition: all 0.3s ease-in;
-}
 
-.navbar .navbar-toggler .menu-icon-bar:first-child {
-  opacity: 1;
-  -webkit-transform: translateY(-1px) rotate(45deg);
-  -ms-sform: translateY(-1px) rotate(45deg);
-  transform: translateY(-1px) rotate(45deg);
-}
-
-.navbar .navbar-toggler .menu-icon-bar:last-child {
-  opacity: 1;
-  -webkit-transform: translateY(-1px) rotate(135deg);
-  -ms-sform: translateY(-1px) rotate(135deg);
-  transform: translateY(-1px) rotate(135deg);
-}
-
-.navbar .navbar-toggler.collapsed .menu-icon-bar {
-  opacity: 1;
-}
-.navbar .navbar-toggler.collapsed .menu-icon-bar:first-child {
-  -webkit-transform: translateY(-7px) rotate(0);
-  -ms-sform: translateY(-7px) rotate(0);
-  transform: translateY(-7px) rotate(0);
-}
-.navbar .navbar-toggler.collapsed .menu-icon-bar:last-child {
-  -webkit-transform: translateY(5px) rotate(0);
-  -ms-sform: translateY(5px) rotate(0);
-  transform: translateY(5px) rotate(0);
-}
 .navbar-dark .navbar-nav .nav-link {
   position: relative;
   color: #fff;
