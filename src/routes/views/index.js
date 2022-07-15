@@ -1,18 +1,21 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
 const {
   renderHomePage,
   renderLoginPage,
   renderSignupPage,
   renderBookingsPage,
-} = require("../../controllers/views");
+  renderBikePage,
+} = require('../../controllers/views');
+const auth = require('../../middlewares/auth');
 
 // Public Routes
-router.get("/", renderHomePage);
-router.get("/login", renderLoginPage);
-router.get("/signup", renderSignupPage);
+router.get('/', renderHomePage);
+router.get('/login', renderLoginPage);
+router.get('/signup', renderSignupPage);
 
 // Private Routes
-router.get("/bookings", renderBookingsPage);
+router.get('/bookings', auth, renderBookingsPage);
+router.get('/bikes/:id', auth, renderBikePage);
 
 module.exports = router;
