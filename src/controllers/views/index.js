@@ -14,9 +14,14 @@ const renderBookingsPage = (req, res) => {
   return res.render("bookings");
 };
 
+const renderBikePage = (req, res) => {
+  return res.render("bike");
+};
+
 module.exports = {
   renderHomePage,
   renderLoginPage,
   renderSignupPage,
   renderBookingsPage,
+  renderBikePage,
 };

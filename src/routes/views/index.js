@@ -5,6 +5,7 @@ const {
   renderLoginPage,
   renderSignupPage,
   renderBookingsPage,
+  renderBikePage,
 } = require("../../controllers/views");
 
 // Public Routes
@@ -14,5 +15,6 @@ router.get("/signup", renderSignupPage);
 
 // Private Routes
 router.get("/bookings", renderBookingsPage);
+router.get("/bikes/:id", renderBikePage);
 
 module.exports = router;
