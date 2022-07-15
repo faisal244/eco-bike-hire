@@ -1,50 +1,49 @@
-const path = require("path");
+const moment = require("moment");
+
+const { Bike, Pricing } = require("../../models");
 
 const renderHomePage = (req, res) => {
-  //   //const filePath = path.join(__dirname, "../../../public/publicHome.html");
-  //   return res.sendFile(filePath);
-  return res.render("Home");
+  return res.render("home");
 };
 
 const renderLoginPage = (req, res) => {
-  //   return res.render("login", { currentPage: "login" });
-  return res.render("Login");
+  return res.render("login");
 };
 
 const renderSignupPage = (req, res) => {
-  //   return res.render("signup", { currentPage: "signup" });
-  return res.render("Signup");
-};
-
-const renderBikesPage = (req, res) => {
-  //   const filePath = path.join(__dirname, "../../../public/dashboard.html");
-  //   return res.sendFile(filePath);
-  return res.render("BikesPage");
-};
-
-const renderBikePage = (req, res) => {
-  //   const filePath = path.join(__dirname, "../../../public/dashboard.html");
-  //   return res.sendFile(filePath);
-  return res.render(" BikePAge");
+  return res.render("signup", { currentPage: "signup" });
 };
 
 const renderBookingsPage = (req, res) => {
-  const filePath = path.join(__dirname, "../../../public/createPlaylist.html");
-  return res.sendFile(filePath);
-  return res.render("Bookings");
+  return res.render("bookings");
 };
 
-const myBookingsPage = (req, res) => {
-  const filePath = path.join(__dirname, "../../../public/singlePlaylist.html");
-  return res.render("booking");
+const renderBikePage = async (req, res) => {
+  const { id } = req.params;
+
+  const bikeFromDb = await Bike.findByPk(id, {
+    include: [
+      {
+        model: Pricing,
+      },
+    ],
+  });
+
+  const bike = bikeFromDb.get({
+    plain: true,
+  });
+
+  return res.render("bike", {
+    bike,
+    isLoggedIn: req.session.isLoggedIn,
+    currentDate: moment().format("YYYY-MM-DD"),
+  });
 };
 
 module.exports = {
   renderHomePage,
   renderLoginPage,
   renderSignupPage,
-  renderBikesPage,
-  renderBikePage,
   renderBookingsPage,
-  myBookingsPage,
+  renderBikePage,
 };
