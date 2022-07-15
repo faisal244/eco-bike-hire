@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 const { Bike, Pricing } = require("../../models");
 
 const renderHomePage = (req, res) => {
@@ -31,9 +33,11 @@ const renderBikePage = async (req, res) => {
     plain: true,
   });
 
-  console.log(bike);
-
-  return res.render("bike", { bike });
+  return res.render("bike", {
+    bike,
+    isLoggedIn: req.session.isLoggedIn,
+    currentDate: moment().format("YYYY-MM-DD"),
+  });
 };
 
 module.exports = {

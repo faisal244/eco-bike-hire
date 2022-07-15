@@ -51,78 +51,40 @@
     </div>
   </section>
 
-  <!-- Form to book a bike -->
-  <section name="bike-form" id="bike-form">
-    <div class="row justify-content-center">
-      <div class="col-md-8 mb-4">
-        <div class="card m-4">
-          <div class="card-header py-3">
-            <h5 class="mb-0">Make your booking</h5>
+  <section class="my-4">
+    <div class="card text-center">
+      <div class="card-header">Make your booking</div>
+      <div class="card-body">
+        <h5 class="card-title">Booking Form</h5>
+        <form class="mx-4">
+          <div class="form-floating mb-3">
+            <select
+              class="form-select"
+              id="bookingType"
+              aria-label="Floating label select example"
+            >
+              <option selected value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+            </select>
+            <label for="bookingType">Select booking type</label>
           </div>
-          <div class="card-body">
-            <form>
-              <!-- 2 column grid layout with text inputs for the first and last names -->
-              <div class="row mb-4">
-                <div class="col">
-                  <div class="form-outline">
-                    <div class="mb-4">
-                      <label for="selectPlan">Select plan
-                        <span> * </span></label>
-                      <select class="form-control" id="selectPlan">
-                        <option>Weekly</option>
-                        <option>Daily</option>
-                      </select>
-                    </div>
-                    <div class="mb-4">
-                      <select
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option selected>Choose how long</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="3">Four</option>
-                      </select>
-                    </div>
-                    <div class="mb-4">
-                      <label class="form-label" for="rent-date">
-                        Start date
-                        <span> * </span></label>
-                      <input
-                        type="date"
-                        id="rent-date"
-                        class="form-control"
-                        min="2022-07-14"
-                        required=""
-                      />
-                    </div>
-                    <!-- <div class="mb-3">
-                          <label class="form-label" for="return-date"
-                            >duration <span> * </span></label
-                          >
-                          <input
-                            type="text"
-                            id="return-date"
-                            class="form-control"
-                            min="2022-07-14"
-                            required=""
-                          />
-                          </div>
-                        </div> -->
-                    <div class="mt-5 row justify-content-center">
-                      <button type="submit" class="btn btn-secondary btn-lg">
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Text input -->
-            </form>
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="duration" />
+            <label for="duration">Enter booking duration</label>
           </div>
-        </div>
+          <div class="form-floating mb-3">
+            <input
+              type="date"
+              class="form-control"
+              id="startDate"
+              min="{{currentDate}}"
+            />
+            <label for="startDate">Booking start date</label>
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" type="submit">Book Now</button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
