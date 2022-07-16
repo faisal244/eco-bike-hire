@@ -18,7 +18,7 @@ const handleCreateBooking = async (event) => {
         startDate,
       };
 
-      const response = await fetch("/api", {
+      const response = await fetch("/api/bookings", {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {
