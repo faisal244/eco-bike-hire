@@ -1,2 +1,14 @@
-.avatar {
+.cost-badge {
+  min-width: 200px;
+}
+
+.bike-card-img {
+  object-fit: contain;
+  height: 400px;
+}
+
+@media screen and (max-width: 596px) {
+  .cost-badge {
+    min-width: 150px;
+  }
 }

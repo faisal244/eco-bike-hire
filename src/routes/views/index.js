@@ -7,6 +7,7 @@ const {
   renderBookingsPage,
   renderBikePage,
   renderDashboard,
+  renderAllBikes,
 } = require("../../controllers/views");
 const auth = require("../../middlewares/auth");
 
@@ -14,6 +15,7 @@ const auth = require("../../middlewares/auth");
 router.get("/", renderHomePage);
 router.get("/login", renderLoginPage);
 router.get("/signup", renderSignupPage);
+router.get("/bikes", renderAllBikes);
 
 // Private Routes
 router.get("/bookings", auth, renderBookingsPage);

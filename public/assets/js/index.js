@@ -1,6 +1,51 @@
 const signupForm = $("#signup-form");
 const loginForm = $("#login-form");
 const errorText = $("#error-text");
+const bookButton = $("#book-button");
+
+const handleCreateBooking = async (event) => {
+  event.preventDefault();
+
+  const bookingType = $("#bookingType").val();
+  const bookingDuration = $("#booking-duration").val();
+  const startDate = $("#startdate").val();
+
+  if (bookingType && bookingDuration && startDate) {
+    try {
+      const payload = {
+        bookingType,
+        bookingDuration,
+        startDate,
+      };
+
+      const response = await fetch("/api", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        window.location.assign("/dashboard");
+      } else {
+        renderError(
+          "create-booking-error",
+          "Failed to create a new booking. Please try again."
+        );
+      }
+    } catch (error) {
+      renderError(
+        "create-booking-error",
+        "Failed to create a new booking. Please try again."
+      );
+    }
+  } else {
+    renderError("create-booking-error", "Please complete all required fields.");
+  }
+};
 
 const handleSignup = async (event) => {
   event.preventDefault();
@@ -90,3 +135,4 @@ const handleLogin = async (event) => {
 
 signupForm.submit(handleSignup);
 loginForm.submit(handleLogin);
+bookButton.click(handleCreateBooking);
