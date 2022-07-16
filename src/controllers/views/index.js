@@ -30,10 +30,12 @@ const renderBikePage = async (req, res) => {
 		],
 	});
 
+	console.log("bikeFromDb:" + bikeFromDb);
+
 	const bike = bikeFromDb.get({
 		plain: true,
 	});
-
+	//console.log(bike);
 	return res.render("bike", {
 		bike,
 		isLoggedIn: req.session.isLoggedIn,
@@ -42,11 +44,18 @@ const renderBikePage = async (req, res) => {
 };
 
 const renderAllBikes = async (req, res) => {
-	const bikes = await Bike.findAll({});
+	const bikesFromDb = await Bike.findAll({
+		include: [
+			{
+				model: Pricing,
+			},
+		],
+	});
 
-	// const bike = bike.get({
-	// 	plain: true,
-	// });
+	const bikes = bikesFromDb.map((bike) => {
+		return bike.get({ plain: true });
+	});
+
 	console.log(bikes);
 	return res.render("bikes", bikes);
 };
