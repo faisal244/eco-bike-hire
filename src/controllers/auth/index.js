@@ -1,4 +1,4 @@
-const User = require('../../models/User');
+const User = require("../../models/User");
 
 const login = async (req, res) => {
   try {
@@ -28,7 +28,7 @@ const login = async (req, res) => {
       return res.status(500).json({ success: false });
     }
   } catch (error) {
-    console.log(`[ERROR]: Failed to login | ${error.message}`);
+    console.log(`[ERROR]: Failed to login2 | ${error.message}`);
 
     return res.status(500).json({ success: false });
   }
@@ -42,7 +42,7 @@ const signup = async (req, res) => {
     // check if user exists
     const user = await User.findOne({ where: { email } });
 
-    console.log('user' + JSON.stringify(user));
+    console.log("user" + JSON.stringify(user));
     if (user) {
       console.log(
         `[ERROR]: Failed to create user | Email address of ${email} already exists`
@@ -60,7 +60,7 @@ const signup = async (req, res) => {
       // profileImageUrl,
     });
 
-    console.log('abc', data);
+    console.log("abc", data);
 
     return res.json({ success: true });
   } catch (error) {

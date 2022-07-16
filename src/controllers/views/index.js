@@ -40,10 +40,15 @@ const renderBikePage = async (req, res) => {
   });
 };
 
+const renderDashboard = (req, res) => {
+  return res.render("dashboard");
+};
+
 module.exports = {
   renderHomePage,
   renderLoginPage,
   renderSignupPage,
   renderBookingsPage,
   renderBikePage,
+  renderDashboard,
 };

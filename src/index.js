@@ -6,7 +6,7 @@ const connectSessionSequelize = require("connect-session-sequelize");
 
 const connection = require("./config/connection");
 const routes = require("./routes");
-// const helpers = require("./helpers");
+const helpers = require("./helpers");
 
 const PORT = process.env.PORT || 4000;
 
@@ -27,7 +27,7 @@ const sessionOptions = {
   }),
 };
 
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 
 const app = express();
 
