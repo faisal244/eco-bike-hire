@@ -1,5 +1,5 @@
-const moment = require("moment");
-const { Booking, Pricing } = require("../../models");
+const moment = require('moment');
+const { Booking, Pricing } = require('../../models');
 
 const getAllBookings = async (req, res) => {
   try {
@@ -11,7 +11,7 @@ const getAllBookings = async (req, res) => {
 
     return res
       .status(500)
-      .json({ success: false, error: "Failed to get all bookings" });
+      .json({ success: false, error: 'Failed to get all bookings' });
   }
 };
 
@@ -26,7 +26,7 @@ const getSingleBooking = async (req, res) => {
 
       return res
         .status(404)
-        .json({ success: false, error: "Booking not found" });
+        .json({ success: false, error: 'Booking not found' });
     }
 
     return res.json({ success: true, data });
@@ -35,7 +35,7 @@ const getSingleBooking = async (req, res) => {
 
     return res
       .status(500)
-      .json({ success: false, error: "Failed to get single booking" });
+      .json({ success: false, error: 'Failed to get single booking' });
   }
 };
 
@@ -43,10 +43,11 @@ const createBooking = async (req, res) => {
   try {
     const { bikeId, isDaily, startDate, duration } = req.body;
 
+    console.log;
+
     console.log(req.body);
     const userId = req.session.user.id || 1;
 
-    // const userId = req.session.user.id;
     const pricingFromDb = await Pricing.findOne({ where: { bikeId } });
 
     const pricing = pricingFromDb.get({ plain: true });
@@ -68,7 +69,7 @@ const createBooking = async (req, res) => {
       return res.status(500).json({ success: false });
     }
 
-    const endDate = moment(startDate).add(duration, isDaily ? "days" : "weeks");
+    const endDate = moment(startDate).add(duration, isDaily ? 'days' : 'weeks');
 
     const bookingComplete = await Booking.create({
       bikeId,

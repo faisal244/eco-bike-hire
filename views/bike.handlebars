@@ -56,7 +56,8 @@
       <div class="card-header">Make your booking</div>
       <div class="card-body">
         <h5 class="card-title">Booking Form</h5>
-        <form class="mx-4">
+        <form id="booking-form" class="mx-4">
+          <div id="error-text"></div>
           <div class="form-floating mb-3">
             <select
               class="form-select"
@@ -69,22 +70,23 @@
             <label for="bookingType">Select booking type</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="bookin-duration" />
+            <input type="number" class="form-control" id="booking-duration" />
             <label for="duration">Enter booking duration</label>
           </div>
           <div class="form-floating mb-3">
             <input
               type="date"
               class="form-control"
-              id="startdate"
+              id="startDate"
               min="{{currentDate}}"
             />
             <label for="startDate">Booking start date</label>
           </div>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-primary" type="submit" id="book-button">Book
+            <button class="btn btn-primary" type="submit" id="booking-button">Book
               Now</button>
           </div>
+            
         </form>
       </div>
     </div>
