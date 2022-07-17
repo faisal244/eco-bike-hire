@@ -60,7 +60,11 @@ const renderAllBikes = async (req, res) => {
   });
 
   console.log(bikes);
-  return res.render("bikes", { bikes });
+  return res.render("bikes", {
+    bikes,
+    isLoggedIn: req.session.isLoggedIn,
+    currentPage: "bikes",
+  });
 };
 
 const renderDashboard = (req, res) => {
