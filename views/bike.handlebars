@@ -1,3 +1,9 @@
+{{#if isLoggedIn }}
+  {{> privateNavBar }}
+{{else}}
+  {{> publicNavBar }}
+{{/if}}
+
 <main class="container">
   <section class="my-4">
     <div class="card mb-3 p-2">
@@ -69,7 +75,7 @@
             <label for="bookingType">Select booking type</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="bookin-duration" />
+            <input type="number" class="form-control" id="booking-duration" />
             <label for="duration">Enter booking duration</label>
           </div>
           <div class="form-floating mb-3">

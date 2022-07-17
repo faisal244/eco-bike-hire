@@ -4,11 +4,14 @@ const { Bike, Pricing } = require("../../models");
 const { getAllBikes } = require("../api/bikes");
 
 const renderHomePage = (req, res) => {
-  return res.render("home");
+  return res.render("home", {
+    isLoggedIn: req.session.isLoggedIn,
+    currentPage: "home",
+  });
 };
 
 const renderLoginPage = (req, res) => {
-  return res.render("login");
+  return res.render("login", { currentPage: "login" });
 };
 
 const renderSignupPage = (req, res) => {
@@ -16,7 +19,7 @@ const renderSignupPage = (req, res) => {
 };
 
 const renderBookingsPage = (req, res) => {
-  return res.render("bookings");
+  return res.render("bookings", { currentPage: "bookings" });
 };
 
 const renderBikePage = async (req, res) => {
@@ -61,7 +64,7 @@ const renderAllBikes = async (req, res) => {
 };
 
 const renderDashboard = (req, res) => {
-  return res.render("dashboard");
+  return res.render("dashboard", { currentPage: "dashboard" });
 };
 
 module.exports = {
