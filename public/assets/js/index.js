@@ -100,12 +100,18 @@ const handleCreateBooking = async (event) => {
 
   if (bookingType && duration && startDate) {
     try {
+      const url = window.location.pathname;
+      const bikeId = url.substring(url.lastIndexOf("/") + 1);
+
+      console.log(bikeId);
+
       const payload = {
-        bikeId: event.target.dataset.value,
+        bikeId,
         isDaily: bookingType === "daily" ? true : false,
         duration,
         startDate,
       };
+      console.log(event.target);
 
       const response = await fetch("/api/bookings", {
         method: "POST",
@@ -124,6 +130,7 @@ const handleCreateBooking = async (event) => {
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
+              
                 <h5 class="modal-title">Modal title</h5>
                 <button
                   type="button"
