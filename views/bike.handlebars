@@ -1,4 +1,4 @@
-<main class="container">
+<main class="container" id="main">
   <section class="my-4">
     <div class="card mb-3 p-2">
       <div class="row g-0">
@@ -56,7 +56,7 @@
       <div class="card-header">Make your booking</div>
       <div class="card-body">
         <h5 class="card-title">Booking Form</h5>
-        <form id="booking-form" class="mx-4">
+        <form id="booking-form" class="mx-4" data-value="{{bike.id}}">
           <div id="error-text"></div>
           <div class="form-floating mb-3">
             <select
@@ -83,10 +83,13 @@
             <label for="startDate">Booking start date</label>
           </div>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-primary" type="submit" id="booking-button">Book
-              Now</button>
+            <button
+              class="btn btn-primary"
+              type="submit"
+              id="booking-button"
+            >Book Now</button>
           </div>
-            
+
         </form>
       </div>
     </div>
