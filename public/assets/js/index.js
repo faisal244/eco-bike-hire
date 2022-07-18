@@ -119,52 +119,52 @@ const handleValidateBooking = async (event) => {
         },
       });
 
-      const { data, success } = await response.json();
+      const { isUnavailable, success } = await response.json();
       console.log(success);
-      // if (success) {
-      //   console.log(data);
+      if (isUnavailable) {
+        //  show unavailable modal
 
-      //   const modal = `<div class="modal" tabindex="-1" role="dialog" id="success-modal">
-      //     <div class="modal-dialog" role="document">
-      //       <div class="modal-content">
-      //         <div class="modal-header">
+        const modal = `<div class="modal" tabindex="-1" role="dialog" id="success-modal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
 
-      //           <h5 class="modal-title">Booking Confirmation</h5>
-      //           <button
-      //             type="button"
-      //             class="close"
-      //             data-dismiss="modal"
-      //             aria-label="Close"
-      //           >
-      //             <span aria-hidden="true">&times;</span>
-      //           </button>
-      //         </div>
-      //           <p>Booking confirmed. Total charges: ${data.total}</p>
-      //         </div>
-      //         <div class="modal-footer">
+                <h5 class="modal-title">Booking Confirmation</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                <p>Booking confirmed. Total charges: ${data.total}</p>
+              </div>
+              <div class="modal-footer">
 
-      //           <button
-      //             type="button"
-      //             class="btn btn-primary"
-      //             id="booking-dashboard"
-      //           >
-      //             Go to Bookings
-      //           </button>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>`;
-      //   $("#main").append(modal);
-      //   $("#success-modal").modal("show");
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="booking-dashboard"
+                >
+                  Go to Bookings
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+        $("#main").append(modal);
+        $("#success-modal").modal("show");
 
-      //   $("#booking-dashboard").click(() => {
-      //     console.log("hello");
-      //     window.location.assign("/dashboard");
-      //   });
-      //   console.log("success");
-      // } else {
-      //   errorText.append("Failed to create a new booking2. Please try again.");
-      // }
+        $("#booking-dashboard").click(() => {
+          console.log("hello");
+          window.location.assign("/dashboard");
+        });
+        console.log("success");
+      } else {
+        //  modal The bike is availble to . Do u want to continue?
+      }
     } catch (error) {
       errorText.append("Failed to create a new booking1. Please try again.");
     }
