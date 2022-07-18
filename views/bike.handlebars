@@ -1,3 +1,9 @@
+{{#if isLoggedIn }}
+  {{> privateNavBar }}
+{{else}}
+  {{> publicNavBar }}
+{{/if}}
+
 <main class="container" id="main">
   <section class="my-4">
     <div class="card mb-3 p-2">

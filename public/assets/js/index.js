@@ -2,7 +2,6 @@ const signupForm = $("#signup-form");
 const loginForm = $("#login-form");
 const errorText = $("#error-text");
 const bookingForm = $("#booking-form");
-//const bookForm = document.getElementById("booking-form");
 
 const handleSignup = async (event) => {
   event.preventDefault();
@@ -80,10 +79,10 @@ const handleLogin = async (event) => {
       if (data.success) {
         window.location.assign("/dashboard");
       } else {
-        errorText.append(`<p class="text-danger">Failed to login</p>`);
+        errorText.append(`<p class="text-danger">Failed to login1</p>`);
       }
     } catch (error) {
-      errorText.append(`<p class="text-danger">Failed to login</p>`);
+      errorText.append(`<p class="text-danger">Failed to login2</p>`);
     }
   } else {
     errorText.append(`<p class="text-danger">Please complete all fields</p>`);
@@ -141,7 +140,6 @@ const handleCreateBooking = async (event) => {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
                 <p>Booking confirmed. Total charges: ${data.total}</p>
               </div>
               <div class="modal-footer">

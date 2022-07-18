@@ -1,3 +1,9 @@
+{{#if isLoggedIn }}
+  {{> privateNavBar }}
+{{else}}
+  {{> publicNavBar }}
+{{/if}}
+
 <section class="d-flex flex-wrap justify-content-evenly">
 
   {{#each bikes}}
