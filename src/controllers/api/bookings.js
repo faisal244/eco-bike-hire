@@ -88,8 +88,45 @@ const createBooking = async (req, res) => {
   }
 };
 
+const validateBooking = async (req, res) => {
+  try {
+    const { bikeId, isDaily, duration, startDate } = req.body;
+    const requestStartDate = new Date(startDate);
+    const requestEndDate = new Date(
+      moment(startDate).add(duration, isDaily ? "days" : "weeks")
+    );
+
+    const data = await Booking.findAll({ where: { bikeId } });
+
+    const bookings = data.map((booking) => booking.get({ plain: true }));
+
+    const isUnavailable = bookings.some((booking) => {
+      const bookingStartDate = new Date(booking.startDate);
+      const bookingEndDate = new Date(booking.endDate);
+      const condition1 =
+        requestStartDate >= bookingStartDate &&
+        requestStartDate <= bookingEndDate;
+      const condition2 =
+        requestEndDate >= bookingStartDate && requestEndDate <= bookingEndDate;
+      const condition3 =
+        bookingStartDate >= requestStartDate &&
+        bookingStartDate <= requestEndDate;
+      const condition4 =
+        bookingEndDate >= requestStartDate && bookingEndDate <= requestEndDate;
+      return condition1 || condition2 || condition3 || condition4;
+    });
+    console.log("unavailable", isUnavailable);
+    return res.json({ success: true, isUnavailable });
+  } catch (error) {
+    console.log(`[ERROR]: Failed to create booking | ${error.message}`);
+
+    return res.status(500).json({ success: false });
+  }
+};
+
 module.exports = {
   getAllBookings,
   getSingleBooking,
   createBooking,
+  validateBooking,
 };
