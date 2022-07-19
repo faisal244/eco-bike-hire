@@ -153,13 +153,13 @@ const handleValidateBooking = async (event) => {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Bike is available</h5>
       </div>
       <div class="modal-body">
         <p>The bike is available for booking. Do you want to continue booking?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id = "save-changes">Book Now</button>
+        <button type="button" class="btn btn-primary" id = "book-bike">Book Now</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -167,8 +167,9 @@ const handleValidateBooking = async (event) => {
 </div>`;
         $("#main").append(successModal);
         $("#success-modal").modal("show");
-        $("#save-changes").click(() => {
+        $("#book-bike").click(() => {
           console.log("hello");
+          // handleCreateBooking(payload);
         });
       }
     } catch (error) {
