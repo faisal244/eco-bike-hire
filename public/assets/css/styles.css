@@ -143,4 +143,8 @@ img {
   .cost-badge {
     min-width: 150px;
   }
+
+  .responsive {
+    height: auto;
+  }
 }
