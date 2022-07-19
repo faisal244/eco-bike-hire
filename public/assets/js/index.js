@@ -102,8 +102,6 @@ const handleValidateBooking = async (event) => {
       const url = window.location.pathname;
       const bikeId = url.substring(url.lastIndexOf("/") + 1);
 
-      console.log(bikeId);
-
       const payload = {
         bikeId,
         isDaily: bookingType === "daily" ? true : false,
@@ -120,7 +118,6 @@ const handleValidateBooking = async (event) => {
       });
 
       const { isUnavailable, success } = await response.json();
-      console.log(success);
       if (isUnavailable) {
         //  show unavailable modal
 
@@ -148,7 +145,6 @@ const handleValidateBooking = async (event) => {
         $("#close").click(() => {
           $("#unavailable-modal").modal("hide");
         });
-        console.log("success");
       } else {
         //  modal The bike is availble to . Do you want to continue?
 
@@ -177,15 +173,15 @@ const handleValidateBooking = async (event) => {
         $("#close-success-modal").click(() => {
           $("#success-modal").modal("hide");
         });
-        console.log("success");
       }
     } catch (error) {
-      errorText.append("Failed to create a new booking1. Please try again.");
+      errorText.append("Please try again.");
     }
   } else {
     errorText.append("Please complete all required fields.");
   }
 };
+
 const handleCreateBooking = async (payload) => {
   try {
     const response = await fetch("/api/bookings", {
@@ -197,10 +193,7 @@ const handleCreateBooking = async (payload) => {
     });
 
     const { data, success } = await response.json();
-    console.log(success);
     if (success) {
-      console.log(data);
-
       const modal = `<div class="modal" tabindex="-1" role="dialog" id="booking-modal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -228,7 +221,6 @@ const handleCreateBooking = async (payload) => {
       $("#booking-modal").click(() => {
         $("#close-booking-modal").modal("hide");
       });
-      console.log("success");
     } else {
       errorText.append("Failed to create a new booking2. Please try again.");
     }
