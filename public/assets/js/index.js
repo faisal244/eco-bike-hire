@@ -128,14 +128,14 @@ const handleValidateBooking = async (event) => {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Bike not available</h5>
       </div>
       <div class="modal-body">
         <p>The bike is not available for booking. Please select another booking date or another bike</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary"id="view-bikes">View all bikes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
       </div>
     </div>
   </div>
@@ -143,34 +143,41 @@ const handleValidateBooking = async (event) => {
         $("#main").append(notAvailableModal);
         $("#unavailable-modal").modal("show");
         $("#view-bikes").click(() => {
-          console.log("hello");
           window.location.assign("/bikes");
+        });
+        $("#close").click(() => {
+          $("#unavailable-modal").modal("hide");
         });
         console.log("success");
       } else {
-        //  modal The bike is availble to . Do u want to continue?
+        //  modal The bike is availble to . Do you want to continue?
+
         const successModal = `<div class="modal" tabindex="-1" role="dialog" id= "success-modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Bike is available</h5>
-      </div>
-      <div class="modal-body">
-        <p>The bike is available for booking. Do you want to continue booking?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id = "book-bike">Book Now</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>`;
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Bike is available</h5>
+              </div>
+              <div class="modal-body">
+                <p>The bike is available for booking. Do you want to continue booking?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id = "book-bike">Book Now</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-success-modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>`;
         $("#main").append(successModal);
         $("#success-modal").modal("show");
         $("#book-bike").click(() => {
-          console.log("hello");
-          // handleCreateBooking(payload);
+          $("#success-modal").modal("hide");
+          handleCreateBooking(payload);
         });
+        $("#close-success-modal").click(() => {
+          $("#success-modal").modal("hide");
+        });
+        console.log("success");
       }
     } catch (error) {
       errorText.append("Failed to create a new booking1. Please try again.");
@@ -179,88 +186,54 @@ const handleValidateBooking = async (event) => {
     errorText.append("Please complete all required fields.");
   }
 };
-const handleCreateBooking = async (event) => {
-  event.preventDefault();
+const handleCreateBooking = async (payload) => {
+  try {
+    const response = await fetch("/api/bookings", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  errorText.empty();
-  const bookingType = $("#bookingType").val();
-  const duration = $("#booking-duration").val();
-  const startDate = $("#startDate").val();
+    const { data, success } = await response.json();
+    console.log(success);
+    if (success) {
+      console.log(data);
 
-  if (bookingType && duration && startDate) {
-    try {
-      const url = window.location.pathname;
-      const bikeId = url.substring(url.lastIndexOf("/") + 1);
-
-      console.log(bikeId);
-
-      const payload = {
-        bikeId,
-        isDaily: bookingType === "daily" ? true : false,
-        duration,
-        startDate,
-      };
-      console.log(event.target);
-
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const { data, success } = await response.json();
-      console.log(success);
-      if (success) {
-        console.log(data);
-
-        const modal = `<div class="modal" tabindex="-1" role="dialog" id="success-modal">
+      const modal = `<div class="modal" tabindex="-1" role="dialog" id="booking-modal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
               
                 <h5 class="modal-title">Booking Confirmation</h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
               </div>
-                <p>Booking confirmed. Total charges: ${data.total}</p>
+                <p>Booking confirmed.Total charges: ${data.total}.</p>
               </div>
               <div class="modal-footer">
-                
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  id="booking-dashboard"
-                >
-                  Go to Bookings
+                <button type="button" class="btn btn-primary" id="booking-dashboard">
+                  My bookings
                 </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-booking-modal">Close</button>
               </div>
             </div>
           </div>
         </div>`;
-        $("#main").append(modal);
-        $("#success-modal").modal("show");
+      $("#main").append(modal);
+      $("#booking-modal").modal("show");
 
-        $("#booking-dashboard").click(() => {
-          console.log("hello");
-          window.location.assign("/dashboard");
-        });
-        console.log("success");
-      } else {
-        errorText.append("Failed to create a new booking2. Please try again.");
-      }
-    } catch (error) {
-      errorText.append("Failed to create a new booking1. Please try again.");
+      $("#booking-dashboard").click(() => {
+        window.location.assign("/dashboard");
+      });
+      $("#booking-modal").click(() => {
+        $("#close-booking-modal").modal("hide");
+      });
+      console.log("success");
+    } else {
+      errorText.append("Failed to create a new booking2. Please try again.");
     }
-  } else {
-    errorText.append("Please complete all required fields.");
+  } catch (error) {
+    errorText.append("Failed to create a new booking1. Please try again.");
   }
 };
 
