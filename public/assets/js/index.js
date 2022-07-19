@@ -124,46 +124,52 @@ const handleValidateBooking = async (event) => {
       if (isUnavailable) {
         //  show unavailable modal
 
-        const modal = `<div class="modal" tabindex="-1" role="dialog" id="unavailable-modal">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-
-                <h5 class="modal-title">Bike not available</h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-                <p>The bike is unavailable on the selected date. Please pick another bike or another date</p>
-              </div>
-              <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  id="bikes"
-                >
-                  Go to Bikes
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>`;
-        $("#main").append(modal);
+        const notAvailableModal = `<div class="modal" tabindex="-1" role="dialog" id= "unavailable-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+      </div>
+      <div class="modal-body">
+        <p>The bike is not available for booking. Please select another booking date or another bike</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"id="view-bikes">View all bikes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+        $("#main").append(notAvailableModal);
         $("#unavailable-modal").modal("show");
-
-        $("#bikes").click(() => {
+        $("#view-bikes").click(() => {
           console.log("hello");
           window.location.assign("/bikes");
         });
         console.log("success");
       } else {
         //  modal The bike is availble to . Do u want to continue?
+        const successModal = `<div class="modal" tabindex="-1" role="dialog" id= "success-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+      </div>
+      <div class="modal-body">
+        <p>The bike is available for booking. Do you want to continue booking?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id = "save-changes">Book Now</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+        $("#main").append(successModal);
+        $("#success-modal").modal("show");
+        $("#save-changes").click(() => {
+          console.log("hello");
+        });
       }
     } catch (error) {
       errorText.append("Failed to create a new booking1. Please try again.");
