@@ -124,12 +124,12 @@ const handleValidateBooking = async (event) => {
       if (isUnavailable) {
         //  show unavailable modal
 
-        const modal = `<div class="modal" tabindex="-1" role="dialog" id="success-modal">
+        const modal = `<div class="modal" tabindex="-1" role="dialog" id="unavailable-modal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
 
-                <h5 class="modal-title">Booking Confirmation</h5>
+                <h5 class="modal-title">Bike not available</h5>
                 <button
                   type="button"
                   class="close"
@@ -139,27 +139,27 @@ const handleValidateBooking = async (event) => {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-                <p>Booking confirmed. Total charges: ${data.total}</p>
+                <p>The bike is unavailable on the selected date. Please pick another bike or another date</p>
               </div>
               <div class="modal-footer">
-
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button
                   type="button"
                   class="btn btn-primary"
-                  id="booking-dashboard"
+                  id="bikes"
                 >
-                  Go to Bookings
+                  Go to Bikes
                 </button>
               </div>
             </div>
           </div>
         </div>`;
         $("#main").append(modal);
-        $("#success-modal").modal("show");
+        $("#unavailable-modal").modal("show");
 
-        $("#booking-dashboard").click(() => {
+        $("#bikes").click(() => {
           console.log("hello");
-          window.location.assign("/dashboard");
+          window.location.assign("/bikes");
         });
         console.log("success");
       } else {
