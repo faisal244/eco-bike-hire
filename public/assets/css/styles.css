@@ -6,9 +6,9 @@
   object-fit: contain;
   height: 400px;
 }
-.carousel-img {
-  object-fit: contain;
-  height: 400px;
+
+.bikes-carousel {
+  margin-top: 56px;
 }
 
 .header {
