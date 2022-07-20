@@ -174,6 +174,26 @@ const handleCreateBooking = async (event) => {
   }
 };
 
+const handleLogout = async (event) => {
+  event.preventDefault();
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+  };
+
+  const response = await fetch("/auth/logout", options);
+  if (response.status !== 204) {
+    console.error("Logout failed");
+  } else {
+    window.location.replace("/");
+  }
+};
+
+$("#logout-btn").click(handleLogout);
 signupForm.submit(handleSignup);
 loginForm.submit(handleLogin);
 bookingForm.submit(handleCreateBooking);
