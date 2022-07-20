@@ -1,15 +1,16 @@
-//const dateFns = require("date-fns");
+// n
 
 const isEqualTo = (data, equalToString) => {
   return data === equalToString;
 };
 
-// const formatDate = (date) => {
-//   const formattedDate = dateFns.format(new Date(date), "do MMMM, yyyy");
-//   return `Created: ${formattedDate}`;
-// };
+const formatDate = (date) => {
+  const dateObject = new Date(date);
+  const formatedDate = dateObject.toDateString();
+  return formatedDate;
+};
 
 module.exports = {
   isEqualTo,
-  //formatDate,
+  formatDate,
 };
