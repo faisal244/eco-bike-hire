@@ -1,58 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="./assets/css/userDashboard.css" />
-    <title>EcoBikes|View our bikes</title>
-  </head>
-
-  <body>
-  
-    <header>
-      <!-- Sidebar -->
-      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-        <div class="position-sticky">
-          <div class="list-group list-group-flush mx-3 mt-4">
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                class="fas fa-lock fa-fw me-3"></i><span>My Profile</span></a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-              <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Bookings</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-              <i class="fas fa-chart-area fa-fw me-3"></i><span>Return a bike form </span>
-            </a>
-
-            </a>
-          </div>
-        </div>
-      </nav>
-      <!-- Sidebar -->
-
-
-
-          
-      
-       
-     
-    </header>
-   
-
-
-    
-    <main id="main-container" style="margin-top: 58px">
+<main id="main-container" style="margin-top: 58px">
       <section class="container pt-4">
    
         
@@ -66,10 +12,10 @@
 
                         
                    
-                        <form class="mx-4">
+                        <form id="profile-details-forms" class="mx-4">
                             <div class="card mb-4 " style="width: 10rem; height: 8rem;">
                                 <div class="card-header"> profile pic </div>
-                                <img src="..." class="card-img-top" alt="...">
+                                <img src="" class="card-img-top" alt="">
                                
                               </div>
                               
@@ -77,24 +23,28 @@
                           
                             <div class="input-group mb-3">
                                 
-                                <span class="input-group-text" id="inputGroup-sizing-default">First Name</span>
-                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                                <button type="button" class="btn btn-primary">edit</button>
+                                <span class="input-group-text" id="inputGroup-sizing-default">first name</span>
+                                <input type="text" class="form-control" id="firstName" placeholder="abdinasir" aria-label="Sizing example input"  aria-describedby="inputGroup-sizing-default">
+                               
                               </div>
+           
                              </div>
                              <div class="form-floating mb-4">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Last Name</span>
-                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                                    <button type="button" class="btn btn-primary">edit</button>
+                                    <span class="input-group-text"  id="inputGroup-sizing-default">Last Name</span>
+                                    <input type="text" class="form-control" id="lastName" value="Abdinasir"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                 
                                   </div>
                                  </div>
                              <div class="form-floating mb-4">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Your Email</span>
-                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                                    <button type="button" class="btn btn-primary">Edit</button>
+                                    <input type="text" class="form-control"  placeholder="abc@gmail.com" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                  
                                   </div>
+                                      <div class="d-grid gap-2 col-6 mx-auto">
+                                <button class="btn btn-primary" type="submit" id="book-button">Update</button>
+                              </div>
                                  </div>
                              
                       
@@ -119,7 +69,7 @@
 
                       
                  
-                      <form class="mx-4">
+                      <form id="password-form" class="mx-4">
                           
                             
                         <div class="form-floating mb-4">
@@ -155,24 +105,3 @@
     </section>
   </main>
     
-      
-
-
-      
-
-
-     
-    <!--Main layout-->
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  ></script>
-
-    <script src="./assets/js/userDashboard.js"></script>
-    <script src="./assets/js/index.js"></script>
-
-  </body>
-
-</html>

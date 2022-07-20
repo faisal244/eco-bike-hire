@@ -1,3 +1,67 @@
-{{> privateNavBar }}
+{{#if isLoggedIn }}
+  {{> privateNavBar }}
+{{else}}
+  {{> publicNavBar }}
+{{/if}}
 
-<h1>Dashboard</h1>
+
+ <main>
+
+   
+
+    
+    <section id="main-container" style="margin-top: 58px">
+        <section class="container pt-4">
+          <section class="mb-4">
+            <div class="card">
+              <div class="card-header text-center py-3">
+              <h5 class="mb-0 text-center">
+                <strong>All Bookings</strong>
+              </h5>
+              </div>
+              <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover text-nowrap">
+                <thead>
+                  <tr>
+                  <th scope="col"></th>
+
+                  <th scope="col">bike name</th>
+                  <th scope="col">Start date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Booking Duration</th>
+                  <th scope="col">Total Price</th>
+                  </tr>
+                </thead>
+                <tbody  id="detailsTable">
+        
+                  <!-- Booking 1 info -->
+          {{#each bookings}}
+                  <tr>
+                  <td>
+                    <button type="button" id="detailsButton" class="btn btn-info" data-attribute="{{id}}" >Details</button> 
+                  </td>
+                  <th scope="row">{{bike.brand}}{{bike.modelType}}</th>
+                  <td> {{formatDate startDate}} </td>
+                  <td>{{formatDate endDate}}</td>
+                  <td>{{duration}}</td>
+                  <td>£{{total}}</td>
+                  </tr>
+        
+                  <!-- Booking 2 info -->
+                  
+        
+        {{/each}}
+                  
+                </tbody>
+                </table>
+              </div>
+              </div>
+            </div>
+            </section>
+
+      
+        </section>
+        </main>
+   
+    
