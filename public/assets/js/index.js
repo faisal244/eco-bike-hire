@@ -181,39 +181,16 @@ const handleCreateBooking = async (event) => {
   }
 };
 
-const handleSideNav = (event) => {
-  event.preventDefault();
-  const target = $(event.target);
 
-  if (target.is('a[id="profileBtn"]')) {
-    const profile = target.attr('id');
-    console.log(profile);
-    window.location.assign('/bookingsProfile');
-  }
-  if (target.is('a[id="bookingsBtn"]')) {
-    const bookings = target.attr('id');
-    console.log(bookings);
-    window.location.assign('/bookings/1');
-  }
-  if (target.is('a[id="allBookingsBtn"]')) {
-    const bookings = target.attr('id');
-    console.log(bookings);
-    window.location.assign('/allBookings');
-  }
-};
 
 const handleDetailsPage = (event) => {
   event.preventDefault();
   const target = $(event.target);
 
-  // TO DO FOR ABDINASIR
 
-  // check if the target is of type "button"
-
-  // get the data attribute
   const rowId = target.data('attribute');
 
-  // navigate to the details page
+  
 
   console.log('rowId:', rowId);
   window.location.assign('/bookings/' + rowId);
