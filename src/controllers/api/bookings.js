@@ -1,5 +1,5 @@
-const moment = require("moment");
-const { Booking, Pricing } = require("../../models");
+const moment = require('moment');
+const { Booking, Pricing } = require('../../models');
 
 const getAllBookings = async (req, res) => {
   try {
@@ -11,13 +11,14 @@ const getAllBookings = async (req, res) => {
 
     return res
       .status(500)
-      .json({ success: false, error: "Failed to get all bookings" });
+      .json({ success: false, error: 'Failed to get all bookings' });
   }
 };
 
 const getSingleBooking = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log('id: ' + id);
 
     const data = await Booking.findByPk(id);
 
@@ -26,7 +27,7 @@ const getSingleBooking = async (req, res) => {
 
       return res
         .status(404)
-        .json({ success: false, error: "Booking not found" });
+        .json({ success: false, error: 'Booking not found' });
     }
 
     return res.json({ success: true, data });
@@ -35,7 +36,7 @@ const getSingleBooking = async (req, res) => {
 
     return res
       .status(500)
-      .json({ success: false, error: "Failed to get single booking" });
+      .json({ success: false, error: 'Failed to get single booking' });
   }
 };
 
@@ -43,10 +44,8 @@ const createBooking = async (req, res) => {
   try {
     const { bikeId, isDaily, startDate, duration } = req.body;
 
-    console.log(req.body);
     const userId = req.session.user.id || 1;
 
-    // const userId = req.session.user.id;
     const pricingFromDb = await Pricing.findOne({ where: { bikeId } });
 
     const pricing = pricingFromDb.get({ plain: true });
@@ -68,7 +67,7 @@ const createBooking = async (req, res) => {
       return res.status(500).json({ success: false });
     }
 
-    const endDate = moment(startDate).add(duration, isDaily ? "days" : "weeks");
+    const endDate = moment(startDate).add(duration, isDaily ? 'days' : 'weeks');
 
     const bookingComplete = await Booking.create({
       bikeId,
@@ -79,7 +78,8 @@ const createBooking = async (req, res) => {
       total,
       endDate,
     });
-    // console.log(bookingComplete.get({ plain: true }));
+
+    console.log(bookingComplete.get({ plain: true }));
     const bookingData = bookingComplete.get({ plain: true });
     return res.json({ success: true, data: bookingData });
   } catch (error) {
