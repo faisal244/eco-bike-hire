@@ -1,30 +1,33 @@
-<div class="height d-flex justify-content-center align-items-center">
-  <div class="card p-3">
-    <div class="d-flex justify-content-between align-items-center">
-      <div class="mt-2">
-        <div class="mt-5">
-          <!-- <h5 class="text-uppercase mb-0">Tyoe</h5> -->
-          <h1 class="main-heading mt-5">Road Bike</h1>
-          <div class="d-flex flex-row user-ratings">
-            <div class="ratings">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <h6 class="text-muted ml-1">3/5</h6>
-          </div>
-        </div>
-      </div>
-      <div class="image">
-        <img
-          src="https://www.wigglestatic.com/product-media/100375136/Brand-X-Road-Bike-Road-Bikes-Black-2017-BRNDXROADXL-0.jpg?w=960&h=430&a=7"
-          width="200"
-        />
-      </div>
+<div class="card m-3" style="width: 28rem">
+  <img
+    d-flex
+    src="https://media.istockphoto.com/photos/silhouette-of-cyclist-on-the-background-of-beautiful-sunset-picture-id973722408?k=20&m=973722408&s=612x612&w=0&h=PJdoMfQhJWivI1s7ZKpcuEKT7zGiyUi5ZVOPbmGZx7w="
+    class="card-img-top bike-card-img"
+    alt="{{brand}} {{modelType}}"
+  />
+  <div class="card-body">
+    <h5 class="card-title">Road Bike</h5>
+    <p class="card-text text-truncate">A great option for you</p>
+  </div>
+
+  <div class="d-flex flex-row flex-wrap justify-content-around py-4">
+    <div class="badge bg-info fs-3 cost-badge mb-2">
+      <h3>£40</h3>
+      <div class="fs-6 text-muted">daily</div>
     </div>
+    <div class="badge bg-info fs-3 cost-badge mb-2">
+      <h3>£40</h3>
+      <div class="fs-6 text-muted">weekly</div>
+    </div>
+  </div>
 
-    <p>A great option weather you are at office or at home.</p>
-
-    <button class="btn btn-danger">view more</button>
+  <div class="d-grid gap-2 col-6 mx-auto my-3">
+    <a
+      href="/bikes/{{id}}"
+      class="btn btn-primary btn-lg"
+      role="button"
+      aria-disabled="true"
+    >Book Now</a>
+    <div id="error-text"></div>
   </div>
 </div>
