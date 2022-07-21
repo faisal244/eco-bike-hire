@@ -104,7 +104,7 @@ const handleValidateBooking = async (event) => {
   const bookingType = $("#bookingType").val();
   const duration = $("#booking-duration").val();
   const startDate = $("#startDate").val();
-
+  console.log("values provided");
   if (bookingType && duration && startDate) {
     try {
       const url = window.location.pathname;
@@ -116,7 +116,7 @@ const handleValidateBooking = async (event) => {
         duration,
         startDate,
       };
-
+      console.log(payload);
       const response = await fetch("/api/bookings/validate", {
         method: "POST",
         body: JSON.stringify(payload),
@@ -124,7 +124,7 @@ const handleValidateBooking = async (event) => {
           "Content-Type": "application/json",
         },
       });
-
+      console.log(success);
       const { isUnavailable, success } = await response.json();
       if (isUnavailable) {
         //  show unavailable modal
