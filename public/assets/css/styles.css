@@ -1,3 +1,20 @@
+body {
+  background-color: cadetblue;
+}
+
+.submit-btn {
+  background-color: cadetblue;
+}
+
+.bike-image {
+  transition: 200ms transform ease-in-out;
+}
+
+.navbar-brand {
+  font-size: 60px;
+  font-family: "Edu QLD Beginner", cursive;
+}
+
 .cost-badge {
   min-width: 200px;
 }
