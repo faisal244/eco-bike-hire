@@ -1,12 +1,12 @@
-const Pricing = require('../models/Pricing');
+const Pricing = require("../models/Pricing");
 
 const prices = [
-  { dailyPrice: 22, weeklyPrice: 40, bikeId: 1 },
-  { dailyPrice: 20, weeklyPrice: 35, bikeId: 2 },
-  { dailyPrice: 18, weeklyPrice: 35, bikeId: 3 },
-  { dailyPrice: 20, weeklyPrice: 38, bikeId: 4 },
-  { dailyPrice: 22, weeklyPrice: 50, bikeId: 5 },
-  { dailyPrice: 22, weeklyPrice: 50, bikeId: 6 },
+  { dailyPrice: 22, weeklyPrice: 88, bikeId: 1 },
+  { dailyPrice: 20, weeklyPrice: 80, bikeId: 2 },
+  { dailyPrice: 18, weeklyPrice: 72, bikeId: 3 },
+  { dailyPrice: 20, weeklyPrice: 80, bikeId: 4 },
+  { dailyPrice: 22, weeklyPrice: 88, bikeId: 5 },
+  { dailyPrice: 22, weeklyPrice: 88, bikeId: 6 },
   { dailyPrice: 15, weeklyPrice: 60, bikeId: 7 },
   { dailyPrice: 15, weeklyPrice: 60, bikeId: 8 },
   { dailyPrice: 15, weeklyPrice: 60, bikeId: 9 },
@@ -23,8 +23,6 @@ const seedPricing = async () => {
     where: {},
   });
   await Pricing.bulkCreate(prices);
-
-  console.log('✅ pricing');
 };
 
 module.exports = seedPricing;
