@@ -116,7 +116,6 @@ const handleValidateBooking = async (event) => {
         duration,
         startDate,
       };
-      console.log(payload);
       const response = await fetch("/api/bookings/validate", {
         method: "POST",
         body: JSON.stringify(payload),
@@ -124,7 +123,6 @@ const handleValidateBooking = async (event) => {
           "Content-Type": "application/json",
         },
       });
-      console.log(success);
       const { isUnavailable, success } = await response.json();
       if (isUnavailable) {
         //  show unavailable modal
@@ -220,7 +218,6 @@ const handleCreateBooking = async (payload) => {
     });
 
     const { data, success } = await response.json();
-    console.log(data);
     if (success) {
       const modal = `<div class="modal" tabindex="-1" role="dialog" id="booking-modal">
           <div class="modal-dialog" role="document">
