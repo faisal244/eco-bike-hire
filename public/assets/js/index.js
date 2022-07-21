@@ -33,6 +33,7 @@ const handleSignup = async (event) => {
         });
 
         const data = await response.json();
+
         if (data.success) {
           window.location.assign("/login");
         } else {
@@ -193,6 +194,7 @@ const handleCreateBooking = async (payload) => {
     });
 
     const { data, success } = await response.json();
+    console.log(data);
     if (success) {
       const modal = `<div class="modal" tabindex="-1" role="dialog" id="booking-modal">
           <div class="modal-dialog" role="document">
@@ -212,13 +214,18 @@ const handleCreateBooking = async (payload) => {
             </div>
           </div>
         </div>`;
+
       $("#main").append(modal);
+
       $("#booking-modal").modal("show");
 
-      $("#booking-dashboard").click(() => {
-        window.location.assign("/dashboard");
-      });
-      $("#booking-modal").click(() => {
+      const showBookings = () => {
+        console.log("bc");
+        window.location.assign("/bikes");
+      };
+      $("#booking-dashboard").click(showBookings);
+
+      $("#close-booking-modal").click(() => {
         $("#close-booking-modal").modal("hide");
       });
     } else {
