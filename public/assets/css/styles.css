@@ -142,6 +142,28 @@ img {
   background: #fff;
   color: #000;
 }
+/* first  */
+
+/* .card {
+  width: 350px;
+  height: 350px;
+
+  margin-bottom: 50px;
+}
+
+.image {
+  position: absolute;
+  right: 340px;
+  top: 400px;
+}
+
+.main-heading {
+  font-size: 40px;
+  color: red !important;
+}
+.ratings i {
+  color: orange;
+} */
 
 @media screen and (max-width: 596px) {
   .cost-badge {
