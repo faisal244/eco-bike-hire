@@ -104,7 +104,7 @@ const handleValidateBooking = async (event) => {
   const bookingType = $("#bookingType").val();
   const duration = $("#booking-duration").val();
   const startDate = $("#startDate").val();
-  console.log("values provided");
+
   if (bookingType && duration && startDate) {
     try {
       const url = window.location.pathname;
@@ -124,7 +124,6 @@ const handleValidateBooking = async (event) => {
           "Content-Type": "application/json",
         },
       });
-      console.log(success);
       const { isUnavailable, success } = await response.json();
       if (isUnavailable) {
         //  show unavailable modal
@@ -220,7 +219,6 @@ const handleCreateBooking = async (payload) => {
     });
 
     const { data, success } = await response.json();
-    console.log(data);
     if (success) {
       const modal = `<div class="modal" tabindex="-1" role="dialog" id="booking-modal">
           <div class="modal-dialog" role="document">
