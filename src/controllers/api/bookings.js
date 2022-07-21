@@ -91,7 +91,6 @@ const createBooking = async (req, res) => {
 
 const validateBooking = async (req, res) => {
   try {
-    console.log("controller");
     const { bikeId, isDaily, duration, startDate } = req.body;
     const requestStartDate = new Date(startDate);
     const requestEndDate = new Date(
