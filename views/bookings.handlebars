@@ -1,7 +1,94 @@
-{{#if isLoggedIn }}
-  {{> privateNavBar }}
-{{else}}
-  {{> publicNavBar }}
-{{/if}}
 
-<h1>Bookings</h1>
+  {{> privateNavBar }}
+
+
+
+ 
+  
+
+
+    
+    <section id="main-container" style="margin-top: 58px">
+        <section class="container pt-4">
+          <div class="card">
+            <div class="card text-center">
+              <div class="card-header">
+                <h5>Booking</h5>
+              </div>
+              <div class="card-body">
+                <div class="card mb-3 p-2">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img
+                        src="{{bike.coverImageUrl}}"
+                        alt="Trendy Pants and Shoes"
+                        class="img-fluid rounded-start"
+                      />
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          {{bike.brand}} {{bike.modelType}}
+                        </h5>
+                        <hr />
+                        <p class="card-text">{{bike.description}}</p>
+                        <hr />
+                        <p class="card-text">
+                          <small class="text-muted"
+                            ><strong>BRAND:</strong> {{bike.brand}}</small
+                          >
+                        </p>
+                        <p class="card-text">
+                          <small class="text-muted"
+                            ><strong>Model:</strong> {{bike.modelType}}</small
+                          >
+                        </p>
+                        <p class="card-text">
+                          <small class="text-muted"
+                            ><strong>FRAME:</strong> {{bike.frameSize}}
+                            inches</small
+                          >
+                        </p>
+                        <p class="card-text">
+                          <small class="text-muted"
+                            ><strong>WHEEL:</strong> {{bike.wheelSize}}
+                            inches</small
+                          >
+                        </p>
+                           <p class="card-text">
+                          <small class="text-muted"
+                            ><strong>Booking start date:</strong> {{bike.frameSize}}
+                            inches</small
+                          >
+                        </p>
+                           <p class="card-text">
+                          <small class="text-muted"
+                            ><strong>Booking end date:</strong> {{bike.frameSize}}
+                            inches</small
+                          >
+                        </p>
+                           <p class="card-text">
+                          <small class="text-muted"
+                            ><strong>Duration:</strong> {{bike.frameSize}}
+                            inches</small
+                          >
+                        </p>
+                           <p class="card-text">
+                          <small class="text-muted"
+                            ><strong>Cost:</strong> {{bike.frameSize}}
+                            inches</small
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+       </section>
+   
+    

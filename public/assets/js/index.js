@@ -2,6 +2,7 @@ const signupForm = $("#signup-form");
 const loginForm = $("#login-form");
 const errorText = $("#error-text");
 const bookingForm = $("#booking-form");
+const detailsButton = $("#detailsTable");
 
 const handleSignup = async (event) => {
   event.preventDefault();
@@ -80,13 +81,19 @@ const handleLogin = async (event) => {
       if (data.success) {
         window.location.assign("/dashboard");
       } else {
-        errorText.append(`<p class="text-danger">Failed to login1</p>`);
+        errorText.append(`<div class="alert alert-danger" role="alert">
+        failed to login!
+      </div>`);
       }
     } catch (error) {
-      errorText.append(`<p class="text-danger">Failed to login2</p>`);
+      errorText.append(`<div class="alert alert-danger" role="alert">
+      failed to login!
+    </div>`);
     }
   } else {
-    errorText.append(`<p class="text-danger">Please complete all fields</p>`);
+    errorText.append(`<div class="alert alert-danger" role="alert">
+    Please complete all fields!
+  </div>`);
   }
 };
 
@@ -183,6 +190,25 @@ const handleValidateBooking = async (event) => {
   }
 };
 
+const handleLogout = async (event) => {
+  event.preventDefault();
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+  };
+
+  const response = await fetch("/auth/logout", options);
+  if (response.status !== 204) {
+    console.error("Logout failed");
+  } else {
+    window.location.replace("/");
+  }
+};
+
 const handleCreateBooking = async (payload) => {
   try {
     const response = await fetch("/api/bookings", {
@@ -235,6 +261,20 @@ const handleCreateBooking = async (payload) => {
     errorText.append("Failed to create a new booking1. Please try again.");
   }
 };
+
+$("#logout-btn").click(handleLogout);
+
+const handleDetailsPage = (event) => {
+  event.preventDefault();
+  const target = $(event.target);
+
+  const rowId = target.data("attribute");
+
+  console.log("rowId:", rowId);
+  window.location.assign("/bookings/" + rowId);
+};
+
+detailsButton.click(handleDetailsPage);
 
 signupForm.submit(handleSignup);
 loginForm.submit(handleLogin);
