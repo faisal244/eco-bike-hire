@@ -116,7 +116,7 @@ const handleValidateBooking = async (event) => {
         duration,
         startDate,
       };
-      console.log(payload);
+
       const response = await fetch("/api/bookings/validate", {
         method: "POST",
         body: JSON.stringify(payload),
