@@ -1,17 +1,17 @@
-const signupForm = $('#signup-form');
-const loginForm = $('#login-form');
-const errorText = $('#error-text');
-const bookingForm = $('#booking-form');
-const detailsButton = $('#detailsTable');
+const signupForm = $("#signup-form");
+const loginForm = $("#login-form");
+const errorText = $("#error-text");
+const bookingForm = $("#booking-form");
+const detailsButton = $("#detailsTable");
 
 const handleSignup = async (event) => {
   event.preventDefault();
 
-  const firstName = $('#firstName').val();
-  const lastName = $('#lastName').val();
-  const email = $('#email').val();
-  const password = $('#password').val();
-  const confirmPassword = $('#confirmPassword').val();
+  const firstName = $("#firstName").val();
+  const lastName = $("#lastName").val();
+  const email = $("#email").val();
+  const password = $("#password").val();
+  const confirmPassword = $("#confirmPassword").val();
 
   errorText.empty();
 
@@ -25,18 +25,18 @@ const handleSignup = async (event) => {
           password,
         };
 
-        const response = await fetch('/auth/signup', {
-          method: 'POST',
+        const response = await fetch("/auth/signup", {
+          method: "POST",
           body: JSON.stringify(payload),
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         });
 
         const data = await response.json();
 
         if (data.success) {
-          window.location.assign('/login');
+          window.location.assign("/login");
         } else {
           errorText.append(
             `<p class="text-danger">Failed to create account</p>`
@@ -56,8 +56,8 @@ const handleSignup = async (event) => {
 const handleLogin = async (event) => {
   event.preventDefault();
 
-  const email = $('#email').val();
-  const password = $('#password').val();
+  const email = $("#email").val();
+  const password = $("#password").val();
 
   errorText.empty();
 
@@ -68,18 +68,18 @@ const handleLogin = async (event) => {
         password,
       };
 
-      const response = await fetch('/auth/login', {
-        method: 'POST',
+      const response = await fetch("/auth/login", {
+        method: "POST",
         body: JSON.stringify(payload),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
       const data = await response.json();
 
       if (data.success) {
-        window.location.assign('/dashboard');
+        window.location.assign("/dashboard");
       } else {
         errorText.append(`<div class="alert alert-danger" role="alert">
         failed to login!
@@ -101,27 +101,27 @@ const handleValidateBooking = async (event) => {
   event.preventDefault();
 
   errorText.empty();
-  const bookingType = $('#bookingType').val();
-  const duration = $('#booking-duration').val();
-  const startDate = $('#startDate').val();
+  const bookingType = $("#bookingType").val();
+  const duration = $("#booking-duration").val();
+  const startDate = $("#startDate").val();
 
   if (bookingType && duration && startDate) {
     try {
       const url = window.location.pathname;
-      const bikeId = url.substring(url.lastIndexOf('/') + 1);
+      const bikeId = url.substring(url.lastIndexOf("/") + 1);
 
       const payload = {
         bikeId,
-        isDaily: bookingType === 'daily' ? true : false,
+        isDaily: bookingType === "daily" ? true : false,
         duration,
         startDate,
       };
 
-      const response = await fetch('/api/bookings/validate', {
-        method: 'POST',
+      const response = await fetch("/api/bookings/validate", {
+        method: "POST",
         body: JSON.stringify(payload),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
       const { isUnavailable, success } = await response.json();
@@ -144,13 +144,13 @@ const handleValidateBooking = async (event) => {
     </div>
   </div>
 </div>`;
-        $('#main').append(notAvailableModal);
-        $('#unavailable-modal').modal('show');
-        $('#view-bikes').click(() => {
-          window.location.assign('/bikes');
+        $("#main").append(notAvailableModal);
+        $("#unavailable-modal").modal("show");
+        $("#view-bikes").click(() => {
+          window.location.assign("/bikes");
         });
-        $('#close').click(() => {
-          $('#unavailable-modal').modal('hide');
+        $("#close").click(() => {
+          $("#unavailable-modal").modal("hide");
         });
       } else {
         //  modal The bike is availble to . Do you want to continue?
@@ -171,21 +171,21 @@ const handleValidateBooking = async (event) => {
             </div>
           </div>
         </div>`;
-        $('#main').append(successModal);
-        $('#success-modal').modal('show');
-        $('#book-bike').click(() => {
-          $('#success-modal').modal('hide');
+        $("#main").append(successModal);
+        $("#success-modal").modal("show");
+        $("#book-bike").click(() => {
+          $("#success-modal").modal("hide");
           handleCreateBooking(payload);
         });
-        $('#close-success-modal').click(() => {
-          $('#success-modal').modal('hide');
+        $("#close-success-modal").click(() => {
+          $("#success-modal").modal("hide");
         });
       }
     } catch (error) {
-      errorText.append('Please try again.');
+      errorText.append("Please try again.");
     }
   } else {
-    errorText.append('Please complete all required fields.');
+    errorText.append("Please complete all required fields.");
   }
 };
 
@@ -193,28 +193,28 @@ const handleLogout = async (event) => {
   event.preventDefault();
 
   const options = {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    redirect: 'follow',
+    redirect: "follow",
   };
 
-  const response = await fetch('/auth/logout', options);
+  const response = await fetch("/auth/logout", options);
   if (response.status !== 204) {
-    console.error('Logout failed');
+    console.error("Logout failed");
   } else {
-    window.location.replace('/');
+    window.location.replace("/");
   }
 };
 
 const handleCreateBooking = async (payload) => {
   try {
-    const response = await fetch('/api/bookings', {
-      method: 'POST',
+    const response = await fetch("/api/bookings", {
+      method: "POST",
       body: JSON.stringify(payload),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
@@ -238,38 +238,37 @@ const handleCreateBooking = async (payload) => {
       </div>
     </div>`;
 
-      $('#main').append(modal);
+      $("#main").append(modal);
 
-      $('#booking-modal').modal('show');
+      $("#booking-modal").modal("show");
 
       const showBookings = () => {
-        console.log('bc');
-        window.location.assign('/dashboard');
+        window.location.assign("/dashboard");
       };
 
-      $('#booking-dashboard').click(showBookings);
+      $("#booking-dashboard").click(showBookings);
 
-      $('#close-booking-modal').click(() => {
-        $('#close-booking-modal').modal('hide');
+      $("#close-booking-modal").click(() => {
+        $("#close-booking-modal").modal("hide");
       });
     } else {
-      errorText.append('Failed to create a new booking2. Please try again.');
+      errorText.append("Failed to create a new booking2. Please try again.");
     }
   } catch (error) {
-    errorText.append('Failed to create a new booking1. Please try again.');
+    errorText.append("Failed to create a new booking1. Please try again.");
   }
 };
 
-$('#logout-btn').click(handleLogout);
+$("#logout-btn").click(handleLogout);
 
 const handleDetailsPage = (event) => {
   event.preventDefault();
   const target = $(event.target);
 
-  const rowId = target.data('attribute');
+  const rowId = target.data("attribute");
 
-  console.log('rowId:', rowId);
-  window.location.assign('/bookings/' + rowId);
+  // console.log("rowId:", rowId);
+  window.location.assign("/bookings/" + rowId);
 };
 
 detailsButton.click(handleDetailsPage);
