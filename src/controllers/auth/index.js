@@ -28,7 +28,7 @@ const login = async (req, res) => {
       return res.status(500).json({ success: false });
     }
   } catch (error) {
-    console.log(`[ERROR]: Failed to login2 | ${error.message}`);
+    console.log(`[ERROR]: Failed to login | ${error.message}`);
 
     return res.status(500).json({ success: false });
   }
@@ -42,7 +42,6 @@ const signup = async (req, res) => {
     // check if user exists
     const user = await User.findOne({ where: { email } });
 
-    console.log("user" + JSON.stringify(user));
     if (user) {
       console.log(
         `[ERROR]: Failed to create user | Email address of ${email} already exists`
@@ -59,8 +58,6 @@ const signup = async (req, res) => {
       password,
       // profileImageUrl,
     });
-
-    console.log("abc", data);
 
     return res.json({ success: true });
   } catch (error) {

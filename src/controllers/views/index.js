@@ -1,20 +1,20 @@
-const moment = require('moment');
+const moment = require("moment");
 
-const { Bike, Pricing, Booking, User } = require('../../models');
-const { getAllBikes } = require('../api/bikes');
+const { Bike, Pricing, Booking, User } = require("../../models");
+const { getAllBikes } = require("../api/bikes");
 const renderHomePage = (req, res) => {
-  return res.render('home', {
+  return res.render("home", {
     isLoggedIn: req.session.isLoggedIn,
-    currentPage: 'home',
+    currentPage: "home",
   });
 };
 
 const renderLoginPage = (req, res) => {
-  return res.render('login', { currentPage: 'login' });
+  return res.render("login", { currentPage: "login" });
 };
 
 const renderSignupPage = (req, res) => {
-  return res.render('signup', { currentPage: 'signup' });
+  return res.render("signup", { currentPage: "signup" });
 };
 
 const renderBookingsPage = async (req, res) => {
@@ -25,14 +25,12 @@ const renderBookingsPage = async (req, res) => {
       },
     ],
   });
-  //const bookingFromDb = await getSingleBooking(req, res);
 
   const booking = bookingFromDb.get({
     plain: true,
   });
-  console.log('bookings:' + JSON.stringify(booking));
 
-  return res.render('bookings', {
+  return res.render("bookings", {
     ...booking,
     isLoggedIn: req.session.isLoggedIn,
   });
@@ -54,14 +52,11 @@ const renderAllBookingsPage = async (req, res) => {
   const bookings = bookingFromDb.map((Booking) => {
     return Booking.get({ plain: true });
   });
-  // array.forEach((element) => {});
 
-  //console.log('ABC' + JSON.stringify(bookings));
-
-  return res.render('dashboard', {
+  return res.render("dashboard", {
     bookings,
     isLoggedIn: req.session.isLoggedIn,
-    currentPage: 'dashboard',
+    currentPage: "dashboard",
   });
 };
 
@@ -73,10 +68,9 @@ const renderProfilePage = async (req, res) => {
   const profile = profileFromDb.get({
     plain: true,
   });
-  console.log(profile);
 
-  return res.render('bookingsProfile', {
-    currentPage: 'bookingsProfile',
+  return res.render("bookingsProfile", {
+    currentPage: "bookingsProfile",
     profile,
     isLoggedIn: req.session.isLoggedIn,
   });
@@ -93,16 +87,14 @@ const renderBikePage = async (req, res) => {
     ],
   });
 
-  console.log('bikeFromDb:' + bikeFromDb);
-
   const bike = bikeFromDb.get({
     plain: true,
   });
 
-  return res.render('bike', {
+  return res.render("bike", {
     bike,
     isLoggedIn: req.session.isLoggedIn,
-    currentDate: moment().format('YYYY-MM-DD'),
+    currentDate: moment().format("YYYY-MM-DD"),
   });
 };
 
@@ -119,16 +111,15 @@ const renderAllBikes = async (req, res) => {
     return bike.get({ plain: true });
   });
 
-  console.log(bikes);
-  return res.render('bikes', {
+  return res.render("bikes", {
     bikes,
     isLoggedIn: req.session.isLoggedIn,
-    currentPage: 'bikes',
+    currentPage: "bikes",
   });
 };
 
 const renderDashboard = (req, res) => {
-  return res.render('dashboard', { currentPage: 'dashboard' });
+  return res.render("dashboard", { currentPage: "dashboard" });
 };
 
 module.exports = {

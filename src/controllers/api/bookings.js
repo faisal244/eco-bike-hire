@@ -18,7 +18,6 @@ const getAllBookings = async (req, res) => {
 const getSingleBooking = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("id: " + id);
 
     const data = await Booking.findByPk(id);
 
@@ -49,13 +48,10 @@ const createBooking = async (req, res) => {
     const pricingFromDb = await Pricing.findOne({ where: { bikeId } });
 
     const pricing = pricingFromDb.get({ plain: true });
-    console.log(pricing);
 
     const cost = isDaily ? pricing.dailyPrice : pricing.weeklyPrice;
-    console.log(cost);
 
     const total = cost * duration;
-    console.log(total);
 
     if (isDaily && duration > 10) {
       console.log(`[ERROR]: Duration is too long, please select again |`);
@@ -79,7 +75,6 @@ const createBooking = async (req, res) => {
       endDate,
     });
 
-    console.log(bookingComplete.get({ plain: true }));
     const bookingData = bookingComplete.get({ plain: true });
     return res.json({ success: true, data: bookingData });
   } catch (error) {
@@ -116,7 +111,6 @@ const validateBooking = async (req, res) => {
         bookingEndDate >= requestStartDate && bookingEndDate <= requestEndDate;
       return condition1 || condition2 || condition3 || condition4;
     });
-    console.log("unavailable", isUnavailable);
     return res.json({ success: true, isUnavailable });
   } catch (error) {
     console.log(`[ERROR]: Failed to create booking | ${error.message}`);
