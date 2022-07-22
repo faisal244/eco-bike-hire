@@ -126,8 +126,6 @@ const handleValidateBooking = async (event) => {
       });
       const { isUnavailable, success } = await response.json();
       if (isUnavailable) {
-        //  show unavailable modal
-
         const notAvailableModal = `<div class="modal" tabindex="-1" role="dialog" id= "unavailable-modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -153,8 +151,6 @@ const handleValidateBooking = async (event) => {
           $("#unavailable-modal").modal("hide");
         });
       } else {
-        //  modal The bike is availble to . Do you want to continue?
-
         const successModal = `<div class="modal" tabindex="-1" role="dialog" id= "success-modal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -228,7 +224,7 @@ const handleCreateBooking = async (payload) => {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>Booking confirmed.Total charges: ${data.total}</p>
+            <p>✅ Booking confirmed.Total charges:£${data.total}</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
