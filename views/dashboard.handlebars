@@ -39,7 +39,7 @@
           {{#each bookings}}
                   <tr>
                   <td>
-                    <button type="button" id="detailsButton" class="btn btn-info" data-attribute="{{id}}" >Details</button> 
+                    <button type="button" name="details-btn" id="{{id}}" class="btn btn-info">Details</button> 
                   </td>
                   <th scope="row">{{bike.brand}}{{bike.modelType}}</th>
                   <td> {{formatDate startDate}} </td>

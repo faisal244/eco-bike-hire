@@ -10,7 +10,7 @@ const bikes = [
     description:
       'Using the most popular step-through shaping, the light but robust frame includes a fully integrated battery creating a sleek and ultra-contemporary look. Perfect for city riding, but equally at home on a country trail. The powerful 65 Nm motor will allow your trips to be limited only by your imagination. While the quick-release battery makes charging simple and delivers an impressive range with the larger 14Ah battery. With “best in class” components including Shimano gears and a sleek lightweight Zoom Suspension Fork (18 inch frame only) as well as a large LCD display, this high specification electric bike compromises on nothing.',
     coverImageUrl:
-      'https://ampereelectric.co.uk/wp-content/uploads/2021/03/1024x1024.jpg ',
+      'https://ampereelectric.co.uk/wp-content/uploads/2021/03/1024x1024.jpg',
     categoryId: 4,
   },
   {

@@ -262,13 +262,13 @@ const handleCreateBooking = async (payload) => {
 $("#logout-btn").click(handleLogout);
 
 const handleDetailsPage = (event) => {
-  event.preventDefault();
   const target = $(event.target);
 
-  const rowId = target.data("attribute");
+  if (target.is('button[name="details-btn"]')) {
+    const id = target.attr("id");
 
-  // console.log("rowId:", rowId);
-  window.location.assign("/bookings/" + rowId);
+    window.location.assign(`/bookings/${id}`);
+  }
 };
 
 detailsButton.click(handleDetailsPage);
