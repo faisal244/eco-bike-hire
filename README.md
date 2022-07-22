@@ -138,7 +138,7 @@ Alternatively, please navigate to http://localhost:4000/ in your browser to use 
 
 This application has also been deployed to Heroku cloud Infrastructure and can be accessed directly and immediately by clicking the following link:
 
-[INSERT HEROKU LINK HERE]
+https://blooming-meadow-71288.herokuapp.com/
 
 ## Development Environment
 
