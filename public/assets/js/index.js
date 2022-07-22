@@ -1,17 +1,17 @@
-const signupForm = $('#signup-form');
-const loginForm = $('#login-form');
-const errorText = $('#error-text');
-const bookingForm = $('#booking-form');
-const detailsButton = $('#detailsTable');
+const signupForm = $("#signup-form");
+const loginForm = $("#login-form");
+const errorText = $("#error-text");
+const bookingForm = $("#booking-form");
+const detailsButton = $("#detailsTable");
 
 const handleSignup = async (event) => {
   event.preventDefault();
 
-  const firstName = $('#firstName').val();
-  const lastName = $('#lastName').val();
-  const email = $('#email').val();
-  const password = $('#password').val();
-  const confirmPassword = $('#confirmPassword').val();
+  const firstName = $("#firstName").val();
+  const lastName = $("#lastName").val();
+  const email = $("#email").val();
+  const password = $("#password").val();
+  const confirmPassword = $("#confirmPassword").val();
 
   errorText.empty();
 
@@ -25,17 +25,18 @@ const handleSignup = async (event) => {
           password,
         };
 
-        const response = await fetch('/auth/signup', {
-          method: 'POST',
+        const response = await fetch("/auth/signup", {
+          method: "POST",
           body: JSON.stringify(payload),
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         });
 
         const data = await response.json();
+
         if (data.success) {
-          window.location.assign('/login');
+          window.location.assign("/login");
         } else {
           errorText.append(
             `<p class="text-danger">Failed to create account</p>`
@@ -55,8 +56,8 @@ const handleSignup = async (event) => {
 const handleLogin = async (event) => {
   event.preventDefault();
 
-  const email = $('#email').val();
-  const password = $('#password').val();
+  const email = $("#email").val();
+  const password = $("#password").val();
 
   errorText.empty();
 
@@ -67,18 +68,18 @@ const handleLogin = async (event) => {
         password,
       };
 
-      const response = await fetch('/auth/login', {
-        method: 'POST',
+      const response = await fetch("/auth/login", {
+        method: "POST",
         body: JSON.stringify(payload),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
       const data = await response.json();
 
       if (data.success) {
-        window.location.assign('/dashboard');
+        window.location.assign("/dashboard");
       } else {
         errorText.append(`<div class="alert alert-danger" role="alert">
         failed to login!
@@ -96,91 +97,97 @@ const handleLogin = async (event) => {
   }
 };
 
-const handleCreateBooking = async (event) => {
+const handleValidateBooking = async (event) => {
   event.preventDefault();
 
   errorText.empty();
-  const bookingType = $('#bookingType').val();
-  const duration = $('#booking-duration').val();
-  const startDate = $('#startDate').val();
+  const bookingType = $("#bookingType").val();
+  const duration = $("#booking-duration").val();
+  const startDate = $("#startDate").val();
 
   if (bookingType && duration && startDate) {
     try {
       const url = window.location.pathname;
-      const bikeId = url.substring(url.lastIndexOf('/') + 1);
-
-      console.log(bikeId);
+      const bikeId = url.substring(url.lastIndexOf("/") + 1);
 
       const payload = {
         bikeId,
-        isDaily: bookingType === 'daily' ? true : false,
+        isDaily: bookingType === "daily" ? true : false,
         duration,
         startDate,
       };
-      console.log(event.target);
 
-      const response = await fetch('/api/bookings', {
-        method: 'POST',
+      const response = await fetch("/api/bookings/validate", {
+        method: "POST",
         body: JSON.stringify(payload),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
+      const { isUnavailable, success } = await response.json();
+      if (isUnavailable) {
+        //  show unavailable modal
 
-      const { data, success } = await response.json();
-      console.log(success);
-      if (success) {
-        console.log(data);
+        const notAvailableModal = `<div class="modal" tabindex="-1" role="dialog" id= "unavailable-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Bike not available</h5>
+      </div>
+      <div class="modal-body">
+        <p>The bike is not available for booking. Please select another booking date or another bike</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"id="view-bikes">View all bikes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+        $("#main").append(notAvailableModal);
+        $("#unavailable-modal").modal("show");
+        $("#view-bikes").click(() => {
+          window.location.assign("/bikes");
+        });
+        $("#close").click(() => {
+          $("#unavailable-modal").modal("hide");
+        });
+      } else {
+        //  modal The bike is availble to . Do you want to continue?
 
-        const modal = `<div class="modal" tabindex="-1" role="dialog" id="success-modal">
+        const successModal = `<div class="modal" tabindex="-1" role="dialog" id= "success-modal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-              
-                <h5 class="modal-title">Booking Confirmation</h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title">Bike is available</h5>
               </div>
-                <p>Booking confirmed. Total charges: ${data.total}</p>
+              <div class="modal-body">
+                <p>The bike is available for booking. Do you want to continue booking?</p>
               </div>
               <div class="modal-footer">
-                
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  id="booking-dashboard"
-                >
-                  Go to Bookings
-                </button>
+                <button type="button" class="btn btn-primary" id = "book-bike">Book Now</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-success-modal">Close</button>
               </div>
             </div>
           </div>
         </div>`;
-        $('#main').append(modal);
-        $('#success-modal').modal('show');
-
-        $('#booking-dashboard').click(() => {
-          console.log('hello');
-          window.location.assign('/dashboard');
+        $("#main").append(successModal);
+        $("#success-modal").modal("show");
+        $("#book-bike").click(() => {
+          $("#success-modal").modal("hide");
+          handleCreateBooking(payload);
         });
-        console.log('success');
-      } else {
-        errorText.append('Failed to create a new booking2. Please try again.');
+        $("#close-success-modal").click(() => {
+          $("#success-modal").modal("hide");
+        });
       }
     } catch (error) {
-      errorText.append('Failed to create a new booking1. Please try again.');
+      errorText.append("Please try again.");
     }
   } else {
-    errorText.append('Please complete all required fields.');
+    errorText.append("Please complete all required fields.");
   }
 };
-
 
 const handleLogout = async (event) => {
   event.preventDefault();
@@ -201,25 +208,71 @@ const handleLogout = async (event) => {
   }
 };
 
+const handleCreateBooking = async (payload) => {
+  try {
+    const response = await fetch("/api/bookings", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const { data, success } = await response.json();
+    if (success) {
+      const modal = `<div class="modal" tabindex="-1" id="booking-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Booking Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Booking confirmed.Total charges: ${data.total}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="booking-dashboard" >Go to Bookings</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+      $("#main").append(modal);
+
+      $("#booking-modal").modal("show");
+
+      const showBookings = () => {
+        window.location.assign("/dashboard");
+      };
+
+      $("#booking-dashboard").click(showBookings);
+
+      $("#close-booking-modal").click(() => {
+        $("#close-booking-modal").modal("hide");
+      });
+    } else {
+      errorText.append("Failed to create a new booking2. Please try again.");
+    }
+  } catch (error) {
+    errorText.append("Failed to create a new booking1. Please try again.");
+  }
+};
+
 $("#logout-btn").click(handleLogout);
-
-
 
 const handleDetailsPage = (event) => {
   event.preventDefault();
   const target = $(event.target);
 
+  const rowId = target.data("attribute");
 
-  const rowId = target.data('attribute');
-
-  
-
-  console.log('rowId:', rowId);
-  window.location.assign('/bookings/' + rowId);
+  // console.log("rowId:", rowId);
+  window.location.assign("/bookings/" + rowId);
 };
 
 detailsButton.click(handleDetailsPage);
 
 signupForm.submit(handleSignup);
 loginForm.submit(handleLogin);
-bookingForm.submit(handleCreateBooking);
+bookingForm.submit(handleValidateBooking);
