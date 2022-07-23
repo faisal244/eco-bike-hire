@@ -6,7 +6,7 @@
 - [Links to our project](#links-to-our-project)
 - [Concept](#concept)
 - [User Story](#user-story)
-- [Technologies](#technologies)
+- [Technologies and Packages](#technologies-and-packages)
 - [Screenshots](#screenshots)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -14,21 +14,19 @@
 
 ## Team Members
 
-<!-- add github links -->
-
-- Smeea Arshad
-- Amal Idris
 - Faisal Mohammed
 - Abu Saddique
-- Nayan Sharma
+- Smeea Arshad
 - Abdinasir Warsame
+- Nayan Sharma
+- Amal Idris
 
-## Links to our Project
+## Project Links
 
-- Deployed URL:
-- Github repo:
-- Presentation:
-- Video Walkthrough:
+- Deployed URL: https://blooming-meadow-71288.herokuapp.com/
+- Github repo: https://github.com/faisal244/eco-bike-hire
+- Presentation: https://docs.google.com/presentation/d/13-SYwvsC2lvPPvAUY7Nbtvjf9iwfKEqcc0zCE86k7TQ/edit#slide=id.p
+<!-- - Video Walkthrough:  -->
 
 ## Concept
 
@@ -72,7 +70,7 @@ WHEN a booking is confirmed
 THEN it is updated on the database
 ```
 
-## Technologies
+## Technologies and Packages
 
 - Javascript
 - Node.JS
@@ -90,6 +88,30 @@ THEN it is updated on the database
 - Font Awesome
 
 ## Screenshots
+
+![Homepage-1](./public/img/screenshots/eco-bike-hire-homepage-1.png)
+
+![Homepage-2](./public/img/screenshots/eco-bike-hire-homepage-2.png)
+
+![All bikes page](./public/img/screenshots/eco-bike-hire-bikes-page.png)
+
+![All bikes page 2](./public/img/screenshots/eco-bike-hire-bikes-page-2.png)
+
+![Signup page](./public/img/screenshots/eco-bike-hire-signup-page.png)
+
+![Login page](./public/img/screenshots/eco-bike-hire-login-page.png)
+
+![Single bike page](./public/img/screenshots/eco-bike-hire-single-bike-page.png)
+
+![Booking form](./public/img/screenshots/eco-bike-hire-booking-form.png)
+
+![Stock check modal](./public/img/screenshots/eco-bike-hire-modal-1.png)
+
+![Confirmation modal](./public/img/screenshots/eco-bike-hire-confirmation-modal.png)
+
+![User dashboard](./public/img/screenshots/eco-bike-hire-dashboard.png)
+
+![User booking details](./public/img/screenshots/eco-bike-hire-dashboard-booking-detail.png)
 
 ## Installation
 
@@ -122,11 +144,10 @@ source [enter absolute file path for the provided schema.sql file in the /src/db
 
 type quit to exit the MySQL shell.
 
-Once the source database schema has been provided, please execute the following 2 commands in your terminal to seed the database with employee data and run this application:
+Once the source database schema has been provided, please execute the following command in your terminal to both seed the database with employee data and start the server to run this application:
 
 ```
 
-npm run seed
 npm run start
 
 
