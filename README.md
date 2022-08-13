@@ -23,7 +23,7 @@
 
 ## Project Links
 
-- Deployed URL: https://blooming-meadow-71288.herokuapp.com/
+- Deployed URL: https://eco-bike-hire.herokuapp.com/
 - Github repo: https://github.com/faisal244/eco-bike-hire
 - Presentation: https://docs.google.com/presentation/d/13-SYwvsC2lvPPvAUY7Nbtvjf9iwfKEqcc0zCE86k7TQ/edit#slide=id.p
 <!-- - Video Walkthrough:  -->
@@ -159,7 +159,7 @@ Alternatively, please navigate to http://localhost:4000/ in your browser to use 
 
 This application has also been deployed to Heroku cloud Infrastructure and can be accessed directly and immediately by clicking the following link:
 
-https://blooming-meadow-71288.herokuapp.com/
+https://eco-bike-hire.herokuapp.com/
 
 ## Development Environment
 
